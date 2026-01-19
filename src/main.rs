@@ -7,8 +7,8 @@ mod protocol;
 
 const PORT: u16 = 5520;
 const SERVER_ADDRESS: &str = "72.60.149.222";
-const USERNAME: &str = "M3raak1";
-const UUID: &str = "01c303eb-11e3-4717-93aa-06a6f5aa44f0";
+const USERNAME: &str = "SEU_NOME_AQUI";
+const UUID: &str = "SUA_UUID_AQUI"; // Exemplo: "123e4567-e89b-12d3-a456-426614174000"
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
