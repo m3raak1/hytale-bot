@@ -160,13 +160,6 @@ pub async fn handle_auth_flow_network(
     loop {
         let (packet_id, payload) = read_packet(recv).await?;
 
-        println!("\n📨 Recebido pacote {} ({} bytes)", get_packet_name(packet_id), payload.len());
-        print_hex_dump(&[
-            &(payload.len() as u32).to_le_bytes()[..],
-            &packet_id.to_le_bytes()[..],
-            &payload[..payload.len().min(64)],
-        ].concat());
-
         match packet_id {
             PACKET_DISCONNECT => {
                 println!("⛔ Servidor desconectou!");
@@ -174,25 +167,17 @@ pub async fn handle_auth_flow_network(
             }
 
             PACKET_AUTH_GRANT => {
-                println!("📋 Recebido AuthGrant - processando...");
-
                 if let Some(auth_grant) = parse_auth_grant(&payload) {
-                    println!("   Authorization Grant presente? {}", auth_grant.authorization_grant.is_some());
-                    println!("   Server Identity Token presente? {}", auth_grant.server_identity_token.is_some());
-
                     if let Some(grant) = &auth_grant.authorization_grant {
-                        println!("🔄 Trocando Grant por AccessToken via API...");
 
                         // Chamar a API para obter o accessToken real (com fingerprint)
                         match exchange_grant_for_access_token(grant, session_token, x509_fingerprint).await {
                             Ok(access_token) => {
-                                println!("✅ AccessToken obtido!");
 
                                 // Agora gerar um grant PARA o servidor
                                 let server_grant = if let Some(server_identity) = &auth_grant.server_identity_token {
                                     // Extrair o UUID do servidor do serverIdentityToken
                                     if let Some(server_uuid) = extract_jwt_subject(server_identity) {
-                                        println!("🔄 Gerando grant para servidor (UUID: {})...", server_uuid);
                                         match request_server_auth_grant(identity_token, &server_uuid, session_token).await {
                                             Ok(grant) => Some(grant),
                                             Err(e) => {
@@ -209,7 +194,6 @@ pub async fn handle_auth_flow_network(
                                     None
                                 };
 
-                                println!("📤 Enviando AuthToken...");
                                 let auth_token = build_auth_token(
                                     Some(&access_token),
                                     server_grant.as_deref()
@@ -221,10 +205,6 @@ pub async fn handle_auth_flow_network(
                                 return Err(e);
                             }
                         }
-                    } else {
-                        println!("⚠️ AuthGrant sem grant, enviando identityToken...");
-                        let auth_token = build_auth_token(Some(identity_token), None);
-                        send.write_all(&auth_token).await?;
                     }
                 }
             }
@@ -233,7 +213,6 @@ pub async fn handle_auth_flow_network(
                 println!("🔐 Recebido ServerAuthToken - autenticação avançando!");
                 if let Some(server_auth) = parse_server_auth_token(&payload) {
                     if server_auth.password_challenge.is_none() {
-                        println!("🎉 Autenticação completa sem password!");
                         return Ok(());
                     } else {
                         println!("⚠️ Servidor pediu senha (PasswordChallenge), não implementado.");
