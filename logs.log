@@ -1,0 +1,486 @@
+// Entrou de uma vez --auth-mode insecure no servidor Null_v1 com a conta do M3raak1
+[QUICTransport] Received connection from QuicConnectionAddress{connId=2522d59819b0f436} (/143.255.109.70:49536) to QuicConnectionAddress{connId=5de32860f9a9f263f1b2c8c92dc14986c2fd2659} (/0.0.0.0:5520)
+[Hytale] Received stream QuicConnectionAddress{connId=5de32860f9a9f263f1b2c8c92dc14986c2fd2659} (/143.255.109.70:49536, streamId=0) to QuicConnectionAddress{connId=5de32860f9a9f263f1b2c8c92dc14986c2fd2659} (/0.0.0.0:5520, streamId=0)
+[LoginTiming] setTimeout-initial
+[LoginTiming] Registered took 1ms 334us 408ns
+[LoginTiming] Connect took 117ms 894us 534ns
+[Hytale] Starting development flow for M3raak1 (01c303eb-11e3-4717-93aa-06a6f5aa44f0) from QuicConnectionAddress{connId=5de32860f9a9f263f1b2c8c92dc14986c2fd2659} (/143.255.109.70:49536, streamId=0)
+[PasswordPacketHandler] Connection complete for M3raak1 (01c303eb-11e3-4717-93aa-06a6f5aa44f0), transitioning to setup
+[LoginTiming] setTimeout-send-world-settings took 3ms 699us 819ns
+[LoginTiming] Load Player Config took 990us 726ns
+[LoginTiming] setTimeout-receive-assets-request took 89ms 655us 659ns
+[Hytale] {Setup(null (null, streamId=0)), M3raak1, 01c303eb-11e3-4717-93aa-06a6f5aa44f0, SECURE} was closed.
+[QUICTransport] Connection closed: QuicheQuicConnectionStats[recv=14, sent=19, lost=0, retrans=0, sentBytes=17461, recvBytes=6860, lostBytes=0, streamRetransBytes=0, pathsCount=1]
+
+[HytaleServer] Shutdown triggered!!!
+[HytaleServer] Shutting down... 130  'null'
+[ServerManager|P] Closed listener [id: 0x2dbe787e] and took 973us 855ns
+[ServerManager|P] Closed listener [id: 0xf4b1eb68] and took 198us 1ns
+[ServerManager|P] Closed listener [id: 0x975eeb94] and took 451us 851ns
+[World|default] Stopping world default...
+[World|default] Stopping background threads...
+
+
+// M3raak1 entrando pelo jogo no servidor Null_v1:
+[QUICTransport] Received connection from QuicConnectionAddress{connId=} (/191.11.226.77:47757) to QuicConnectionAddress{connId=1ed33d5b160235b8586b6b97d80cbfab2d859afe} (/0.0.0.0:5520)
+[Hytale] Received stream QuicConnectionAddress{connId=1ed33d5b160235b8586b6b97d80cbfab2d859afe} (/191.11.226.77:47757, streamId=0) to QuicConnectionAddress{connId=1ed33d5b160235b8586b6b97d80cbfab2d859afe} (/0.0.0.0:5520, streamId=0)
+[LoginTiming] setTimeout-initial
+[LoginTiming] Registered took 1ms 529us 998ns
+[LoginTiming] Connect took 171ms 627us 811ns
+[Hytale] Starting authenticated flow for M3raak1 (01c303eb-11e3-4717-93aa-06a6f5aa44f0) from QuicConnectionAddress{connId=1ed33d5b160235b8586b6b97d80cbfab2d859afe} (/191.11.226.77:47757, streamId=0)
+[SessionServiceClient] Session Service client initialized for: https://sessions.hytale.com
+[SessionServiceClient] Successfully fetched JWKS with 1 keys
+[JWTValidator] JWKS loaded with 1 keys
+[JWTValidator] Identity token validated successfully for user null (UUID: 01c303eb-11e3-4717-93aa-06a6f5aa44f0)
+[HandshakeHandler] Identity token validated for M3raak1 (UUID: 01c303eb-11e3-4717-93aa-06a6f5aa44f0, scope: hytale:client) from QuicConnectionAddress{connId=1ed33d5b160235b8586b6b97d80cbfab2d859afe} (/191.11.226.77:47757, streamId=0), requesting auth grant
+[LoginTiming] setTimeout-auth-grant-timeout took 296ms 127us 100ns
+[SessionServiceClient] Requesting authorization grant with identity token, aud='220c3465-f361-4fb4-8cd5-ef1d4b85743f'
+[SessionServiceClient] Successfully obtained authorization grant
+[HandshakeHandler] Sending AuthGrant to QuicConnectionAddress{connId=1ed33d5b160235b8586b6b97d80cbfab2d859afe} (/191.11.226.77:47757, streamId=0) (with server identity: true)
+[LoginTiming] setTimeout-auth-token-timeout took 158ms 573us 412ns
+[HandshakeHandler] Received AuthToken from QuicConnectionAddress{connId=1ed33d5b160235b8586b6b97d80cbfab2d859afe} (/191.11.226.77:47757, streamId=0), validating JWT (mTLS cert present: true, server auth grant: true)
+[CertificateUtil] Certificate binding validated successfully
+[JWTValidator] JWT validated successfully for user M3raak1 (UUID: 01c303eb-11e3-4717-93aa-06a6f5aa44f0)
+[LoginTiming] setTimeout-server-token-exchange-timeout took 608ms 763us 546ns
+[SessionServiceClient] Exchanging authorization grant for access token
+[SessionServiceClient] Successfully obtained access token
+[HandshakeHandler] Sending ServerAuthToken to QuicConnectionAddress{connId=1ed33d5b160235b8586b6b97d80cbfab2d859afe} (/191.11.226.77:47757, streamId=0) (with password challenge: false)
+[HandshakeHandler] Mutual authentication complete for M3raak1 (01c303eb-11e3-4717-93aa-06a6f5aa44f0) from QuicConnectionAddress{connId=1ed33d5b160235b8586b6b97d80cbfab2d859afe} (/191.11.226.77:47757, streamId=0)
+[LoginTiming] Authenticated took 155ms 623us 439ns
+[PasswordPacketHandler] Connection complete for M3raak1 (01c303eb-11e3-4717-93aa-06a6f5aa44f0), transitioning to setup
+[LoginTiming] setTimeout-send-world-settings took 1ms 256us 576ns
+[LoginTiming] Load Player Config took 1ms 281us 726ns
+[LoginTiming] setTimeout-receive-assets-request took 98ms 398us 496ns
+[LoginTiming] Request Assets took 363ms 993us 928ns
+[LoginTiming] Send Common Assets took 2ms 331us 492ns
+[LoginTiming] setTimeout-send-assets took 35us 850ns
+[Hytale] Missing interaction Effect
+[LoginTiming] Send Config Assets took 500ms 648us 750ns
+[LoginTiming] Player Options took 1sec 243ms 191us 630ns
+[Universe|P] Adding player 'M3raak1 (01c303eb-11e3-4717-93aa-06a6f5aa44f0)
+[LoginTiming] setTimeout-add-to-universe took 12ms 439us 284ns
+[LoginTiming] Load Player Config took 11ms 612us 819ns
+[LoginTiming] Processed Referral took 2ms 283us 922ns
+[Hytale] {Playing(QuicConnectionAddress{connId=1ed33d5b160235b8586b6b97d80cbfab2d859afe} (/191.11.226.77:47757, streamId=0)), 01c303eb-11e3-4717-93aa-06a6f5aa44f0, M3raak1} Added future for ClientReady packet?
+[World|default] Adding player 'M3raak1' to world 'default' at location null (01c303eb-11e3-4717-93aa-06a6f5aa44f0)
+[Hytale] {Playing(QuicConnectionAddress{connId=1ed33d5b160235b8586b6b97d80cbfab2d859afe} (/191.11.226.77:47757, streamId=0)), 01c303eb-11e3-4717-93aa-06a6f5aa44f0, M3raak1}: Sent com.hypixel.hytale.protocol.packets.player.JoinWorld@aafc3ba8
+
+
+// M3raak1 tentando entrar no servidor Null_v1, mas sem passar o grant do servidor (mutual auth falha):
+[LoginTiming] setTimeout-initial
+[LoginTiming] Registered took 116us 671ns
+[LoginTiming] Connect took 583us 232ns
+[Hytale] Starting authenticated flow for M3raak1 (01c303eb-11e3-4717-93aa-06a6f5aa44f0) from QuicConnectionAddress{connId=4bb943a1d8c4b140de9a8e36483cd2ffcc241d82} (/143.255.109.70:58483, streamId=0)
+[JWTValidator] Identity token validated successfully for user null (UUID: 01c303eb-11e3-4717-93aa-06a6f5aa44f0)
+[HandshakeHandler] Identity token validated for M3raak1 (UUID: 01c303eb-11e3-4717-93aa-06a6f5aa44f0, scope: hytale:client) from QuicConnectionAddress{connId=4bb943a1d8c4b140de9a8e36483cd2ffcc241d82} (/143.255.109.70:58483, streamId=0), requesting auth grant
+[LoginTiming] setTimeout-auth-grant-timeout took 2ms 226us 862ns
+[SessionServiceClient] Requesting authorization grant with identity token, aud='220c3465-f361-4fb4-8cd5-ef1d4b85743f'
+[SessionServiceClient] Successfully obtained authorization grant
+[HandshakeHandler] Sending AuthGrant to QuicConnectionAddress{connId=4bb943a1d8c4b140de9a8e36483cd2ffcc241d82} (/143.255.109.70:58483, streamId=0) (with server identity: true)
+[LoginTiming] setTimeout-auth-token-timeout took 168ms 368us 964ns
+[HandshakeHandler] Received AuthToken from QuicConnectionAddress{connId=4bb943a1d8c4b140de9a8e36483cd2ffcc241d82} (/143.255.109.70:58483, streamId=0), validating JWT (mTLS cert present: true, server auth grant: false)
+[CertificateUtil] Certificate binding validated successfully
+[JWTValidator] JWT validated successfully for user M3raak1 (UUID: 01c303eb-11e3-4717-93aa-06a6f5aa44f0)
+[HandshakeHandler] Client did not provide server auth grant for mutual authentication
+[Hytale] Disconnecting QuicConnectionAddress{connId=4bb943a1d8c4b140de9a8e36483cd2ffcc241d82} (/143.255.109.70:58483, streamId=0) with the message: Mutual authentication required - please update your client
+[Hytale] {Authenticating(null (null, streamId=0)), authHandlerSupplier=com.hypixel.hytale.server.core.io.handlers.InitialPacketHandler$$Lambda/0x000000006bef5ea8@328e8018} was closed.
+[QUICTransport] Connection closed: QuicheQuicConnectionStats[recv=14, sent=14, lost=0, retrans=0, sentBytes=4399, recvBytes=10171, lostBytes=0, streamRetransBytes=0, pathsCount=1]
+
+// M3raak1 entrando de novo no servidor Null_v1, agora com o grant do servidor (mutual auth OK):
+[LoginTiming] setTimeout-initial
+[LoginTiming] Registered took 92us 841ns
+[LoginTiming] Connect took 378us 132ns
+[Hytale] Starting authenticated flow for M3raak1 (01c303eb-11e3-4717-93aa-06a6f5aa44f0) from QuicConnectionAddress{connId=293245732f5daa9488c4550f678d3cdde73d8c0e} (/143.255.109.70:58434, streamId=0)
+[JWTValidator] Identity token validated successfully for user null (UUID: 01c303eb-11e3-4717-93aa-06a6f5aa44f0)
+[HandshakeHandler] Identity token validated for M3raak1 (UUID: 01c303eb-11e3-4717-93aa-06a6f5aa44f0, scope: hytale:client) from QuicConnectionAddress{connId=293245732f5daa9488c4550f678d3cdde73d8c0e} (/143.255.109.70:58434, streamId=0), requesting auth grant
+[LoginTiming] setTimeout-auth-grant-timeout took 2ms 595us 943ns
+[SessionServiceClient] Requesting authorization grant with identity token, aud='220c3465-f361-4fb4-8cd5-ef1d4b85743f'
+[SessionServiceClient] Successfully obtained authorization grant
+[HandshakeHandler] Sending AuthGrant to QuicConnectionAddress{connId=293245732f5daa9488c4550f678d3cdde73d8c0e} (/143.255.109.70:58434, streamId=0) (with server identity: true)
+[LoginTiming] setTimeout-auth-token-timeout took 243ms 93us 303ns
+[HandshakeHandler] Received AuthToken from QuicConnectionAddress{connId=293245732f5daa9488c4550f678d3cdde73d8c0e} (/143.255.109.70:58434, streamId=0), validating JWT (mTLS cert present: true, server auth grant: true)
+[CertificateUtil] Certificate binding validated successfully
+[JWTValidator] JWT validated successfully for user M3raak1 (UUID: 01c303eb-11e3-4717-93aa-06a6f5aa44f0)
+[LoginTiming] setTimeout-server-token-exchange-timeout took 652ms 433us 979ns
+[SessionServiceClient] Exchanging authorization grant for access token
+[SessionServiceClient] Failed to exchange auth grant: HTTP 400 - invalid authorization grant (1)
+
+[HandshakeHandler] Failed to exchange server auth grant for access token
+[Hytale] Disconnecting QuicConnectionAddress{connId=293245732f5daa9488c4550f678d3cdde73d8c0e} (/143.255.109.70:58434, streamId=0) with the message: Server authentication failed - please try again later
+[Hytale] {Authenticating(null (null, streamId=0)), authHandlerSupplier=com.hypixel.hytale.server.core.io.handlers.InitialPacketHandler$$Lambda/0x000000006bef5ea8@328e8018} was closed.
+[QUICTransport] Connection closed: QuicheQuicConnectionStats[recv=15, sent=16, lost=0, retrans=0, sentBytes=4451, recvBytes=10313, lostBytes=0, streamRetransBytes=0, pathsCount=1]
+
+// Null_v1 logando via script no servidor Null_v1:
+[QUICTransport] Received connection from QuicConnectionAddress{connId=ab0205385f3236a5} (/143.255.109.70:64136) to QuicConnectionAddress{connId=9e79ac9666007f4658430c1ef94801a72644bf75} (/0.0.0.0:5520)
+[Hytale] Received stream QuicConnectionAddress{connId=9e79ac9666007f4658430c1ef94801a72644bf75} (/143.255.109.70:64136, streamId=0) to QuicConnectionAddress{connId=9e79ac9666007f4658430c1ef94801a72644bf75} (/0.0.0.0:5520, streamId=0)
+[LoginTiming] setTimeout-initial
+[LoginTiming] Registered took 1ms 841us 270ns
+[LoginTiming] Connect took 259ms 22us 886ns
+[Hytale] Starting authenticated flow for Null_v1 (350beb9a-818a-4504-9386-39b37d809fa7) from QuicConnectionAddress{connId=9e79ac9666007f4658430c1ef94801a72644bf75} (/143.255.109.70:64136, streamId=0)
+[SessionServiceClient] Session Service client initialized for: https://sessions.hytale.com
+[SessionServiceClient] Successfully fetched JWKS with 1 keys
+[JWTValidator] JWKS loaded with 1 keys
+[JWTValidator] Identity token validated successfully for user null (UUID: 350beb9a-818a-4504-9386-39b37d809fa7)
+[HandshakeHandler] Identity token validated for Null_v1 (UUID: 350beb9a-818a-4504-9386-39b37d809fa7, scope: hytale:client) from QuicConnectionAddress{connId=9e79ac9666007f4658430c1ef94801a72644bf75} (/143.255.109.70:64136, streamId=0), requesting auth grant
+[LoginTiming] setTimeout-auth-grant-timeout took 319ms 81us
+[SessionServiceClient] Requesting authorization grant with identity token, aud='ee16f08e-95b9-465f-bc3e-06f5abab5b6f'
+[SessionServiceClient] Successfully obtained authorization grant
+[HandshakeHandler] Sending AuthGrant to QuicConnectionAddress{connId=9e79ac9666007f4658430c1ef94801a72644bf75} (/143.255.109.70:64136, streamId=0) (with server identity: true)
+[LoginTiming] setTimeout-auth-token-timeout took 152ms 201us 933ns
+[HandshakeHandler] Received AuthToken from QuicConnectionAddress{connId=9e79ac9666007f4658430c1ef94801a72644bf75} (/143.255.109.70:64136, streamId=0), validating JWT (mTLS cert present: true, server auth grant: true)
+[CertificateUtil] Certificate binding validated successfully
+[JWTValidator] JWT validated successfully for user Null_v1 (UUID: 350beb9a-818a-4504-9386-39b37d809fa7)
+[LoginTiming] setTimeout-server-token-exchange-timeout took 664ms 48us 72ns
+[SessionServiceClient] Exchanging authorization grant for access token
+[SessionServiceClient] Successfully obtained access token
+[HandshakeHandler] Sending ServerAuthToken to QuicConnectionAddress{connId=9e79ac9666007f4658430c1ef94801a72644bf75} (/143.255.109.70:64136, streamId=0) (with password challenge: false)
+[HandshakeHandler] Mutual authentication complete for Null_v1 (350beb9a-818a-4504-9386-39b37d809fa7) from QuicConnectionAddress{connId=9e79ac9666007f4658430c1ef94801a72644bf75} (/143.255.109.70:64136, streamId=0)
+[LoginTiming] Authenticated took 155ms 513us 560ns
+[PasswordPacketHandler] Connection complete for Null_v1 (350beb9a-818a-4504-9386-39b37d809fa7), transitioning to setup
+[LoginTiming] setTimeout-send-world-settings took 1ms 350us 686ns
+[LoginTiming] Load Player Config took 1ms 150us 547ns
+[LoginTiming] setTimeout-receive-assets-request took 177ms 872us 402ns
+[Hytale] {Setup(null (null, streamId=0)), Null_v1, 350beb9a-818a-4504-9386-39b37d809fa7, SECURE} was closed.
+[QUICTransport] Connection closed: QuicheQuicConnectionStats[recv=17, sent=29, lost=0, retrans=0, sentBytes=20467, recvBytes=10422, lostBytes=0, streamRetransBytes=0, pathsCount=1]
+
+// de novo logando script null
+[2026/01/19 08:23:11 FINEST]          [LoginTiming] setTimeout-initial
+[2026/01/19 08:23:11   FINE]          [LoginTiming] Registered took 144us 291ns
+[2026/01/19 08:23:11   FINE]          [LoginTiming] Connect took 508us 162ns
+[2026/01/19 08:23:11   INFO]               [Hytale] Starting authenticated flow for Null_v1 (350beb9a-818a-4504-9386-39b37d809fa7) from QuicConnectionAddress{connId=3923656dbad599c5c565e5b28361b3a99c208c79} (/143.255.109.70:56941, streamId=0)
+[2026/01/19 08:23:11   INFO]         [JWTValidator] Identity token validated successfully for user null (UUID: 350beb9a-818a-4504-9386-39b37d809fa7)
+[2026/01/19 08:23:11   INFO]     [HandshakeHandler] Identity token validated for Null_v1 (UUID: 350beb9a-818a-4504-9386-39b37d809fa7, scope: hytale:client) from QuicConnectionAddress{connId=3923656dbad599c5c565e5b28361b3a99c208c79} (/143.255.109.70:56941, streamId=0), requesting auth grant
+[2026/01/19 08:23:11 FINEST]          [LoginTiming] setTimeout-auth-grant-timeout took 6ms 73us 592ns
+[2026/01/19 08:23:11   INFO] [SessionServiceClient] Requesting authorization grant with identity token, aud='d44b2e2a-96a7-47c5-9dea-1394b8b54adf'
+[2026/01/19 08:23:11   INFO] [SessionServiceClient] Successfully obtained authorization grant
+[2026/01/19 08:23:11   INFO]     [HandshakeHandler] Sending AuthGrant to QuicConnectionAddress{connId=3923656dbad599c5c565e5b28361b3a99c208c79} (/143.255.109.70:56941, streamId=0) (with server identity: true)
+[2026/01/19 08:23:11 FINEST]          [LoginTiming] setTimeout-auth-token-timeout took 338ms 265us 457ns
+[2026/01/19 08:23:12   INFO]     [HandshakeHandler] Received AuthToken from QuicConnectionAddress{connId=3923656dbad599c5c565e5b28361b3a99c208c79} (/143.255.109.70:56941, streamId=0), validating JWT (mTLS cert present: true, server auth grant: true)
+[2026/01/19 08:23:12   INFO]      [CertificateUtil] Certificate binding validated successfully
+[2026/01/19 08:23:12   INFO]         [JWTValidator] JWT validated successfully for user Null_v1 (UUID: 350beb9a-818a-4504-9386-39b37d809fa7)
+[2026/01/19 08:23:12 FINEST]          [LoginTiming] setTimeout-server-token-exchange-timeout took 592ms 975us 634ns
+[2026/01/19 08:23:12   INFO] [SessionServiceClient] Exchanging authorization grant for access token
+[2026/01/19 08:23:12   INFO] [SessionServiceClient] Successfully obtained access token
+[2026/01/19 08:23:12   INFO]     [HandshakeHandler] Sending ServerAuthToken to QuicConnectionAddress{connId=3923656dbad599c5c565e5b28361b3a99c208c79} (/143.255.109.70:56941, streamId=0) (with password challenge: false)
+[2026/01/19 08:23:12   INFO]     [HandshakeHandler] Mutual authentication complete for Null_v1 (350beb9a-818a-4504-9386-39b37d809fa7) from QuicConnectionAddress{connId=3923656dbad599c5c565e5b28361b3a99c208c79} (/143.255.109.70:56941, streamId=0)
+[2026/01/19 08:23:12   FINE]          [LoginTiming] Authenticated took 202ms 936us 592ns
+[2026/01/19 08:23:12   INFO] [PasswordPacketHandler] Connection complete for Null_v1 (350beb9a-818a-4504-9386-39b37d809fa7), transitioning to setup
+[2026/01/19 08:23:12 FINEST]           [LoginTiming] setTimeout-send-world-settings took 24ms 938us 979ns
+[2026/01/19 08:23:12   FINE]           [LoginTiming] Load Player Config took 30ms 135us 325ns
+[2026/01/19 08:23:15 FINEST]           [LoginTiming] setTimeout-receive-assets-request took 2sec 487ms 962us 147ns
+[2026/01/19 08:23:23   INFO]                [Hytale] {Setup(null (null, streamId=0)), Null_v1, 350beb9a-818a-4504-9386-39b37d809fa7, SECURE} was closed.
+[2026/01/19 08:23:23   INFO]         [QUICTransport] Connection closed: QuicheQuicConnectionStats[recv=15, sent=26, lost=0, retrans=0, sentBytes=20369, recvBytes=10315, lostBytes=0, streamRetransBytes=0, pathsCount=1]
+
+
+// M3raak1 logando no jogo no servidor M3raak1
+[2026/01/19 08:33:56   FINE]                  [LoginTiming] Connect took 117ms 367us 214ns
+[2026/01/19 08:33:56   INFO]                       [Hytale] Starting authenticated flow for M3raak1 (01c303eb-11e3-4717-93aa-06a6f5aa44f0) from QuicConnectionAddress{connId=411e25578cdfefcb94fcf13984ebbd5261cfe1db} (/191.11.226.77:58924, streamId=0)
+[2026/01/19 08:33:56   INFO]         [SessionServiceClient] Session Service client initialized for: https://sessions.hytale.com
+[2026/01/19 08:33:56   INFO]         [SessionServiceClient] Successfully fetched JWKS with 1 keys
+[2026/01/19 08:33:56   INFO]                 [JWTValidator] JWKS loaded with 1 keys
+[2026/01/19 08:33:56   INFO]                 [JWTValidator] Identity token validated successfully for user null (UUID: 01c303eb-11e3-4717-93aa-06a6f5aa44f0)
+[2026/01/19 08:33:56   INFO]             [HandshakeHandler] Identity token validated for M3raak1 (UUID: 01c303eb-11e3-4717-93aa-06a6f5aa44f0, scope: hytale:client) from QuicConnectionAddress{connId=411e25578cdfefcb94fcf13984ebbd5261cfe1db} (/191.11.226.77:58924, streamId=0), requesting auth grant
+[2026/01/19 08:33:56 FINEST]                  [LoginTiming] setTimeout-auth-grant-timeout took 284ms 244us 472ns
+[2026/01/19 08:33:56   INFO]         [SessionServiceClient] Requesting authorization grant with identity token, aud='39a6629e-c413-4d43-9ada-dd4449908915'
+[2026/01/19 08:33:57   INFO]         [SessionServiceClient] Successfully obtained authorization grant
+[2026/01/19 08:33:57   INFO]             [HandshakeHandler] Sending AuthGrant to QuicConnectionAddress{connId=411e25578cdfefcb94fcf13984ebbd5261cfe1db} (/191.11.226.77:58924, streamId=0) (with server identity: true)
+[2026/01/19 08:33:57 FINEST]                  [LoginTiming] setTimeout-auth-token-timeout took 151ms 769us 78ns
+[2026/01/19 08:33:57   INFO]             [HandshakeHandler] Received AuthToken from QuicConnectionAddress{connId=411e25578cdfefcb94fcf13984ebbd5261cfe1db} (/191.11.226.77:58924, streamId=0), validating JWT (mTLS cert present: true, server auth grant: true)
+[2026/01/19 08:33:57   INFO]              [CertificateUtil] Certificate binding validated successfully
+[2026/01/19 08:33:57   INFO]                 [JWTValidator] JWT validated successfully for user M3raak1 (UUID: 01c303eb-11e3-4717-93aa-06a6f5aa44f0)
+[2026/01/19 08:33:57 FINEST]                  [LoginTiming] setTimeout-server-token-exchange-timeout took 603ms 353us 975ns
+[2026/01/19 08:33:57   INFO]         [SessionServiceClient] Exchanging authorization grant for access token
+[2026/01/19 08:33:57   INFO]         [SessionServiceClient] Successfully obtained access token
+[2026/01/19 08:33:57   INFO]             [HandshakeHandler] Sending ServerAuthToken to QuicConnectionAddress{connId=411e25578cdfefcb94fcf13984ebbd5261cfe1db} (/191.11.226.77:58924, streamId=0) (with password challenge: false)
+[2026/01/19 08:33:57   INFO]             [HandshakeHandler] Mutual authentication complete for M3raak1 (01c303eb-11e3-4717-93aa-06a6f5aa44f0) from QuicConnectionAddress{connId=411e25578cdfefcb94fcf13984ebbd5261cfe1db} (/191.11.226.77:58924, streamId=0)
+[2026/01/19 08:33:57   FINE]                  [LoginTiming] Authenticated took 152ms 196us 166ns
+[2026/01/19 08:33:57   INFO]        [PasswordPacketHandler] Connection complete for M3raak1 (01c303eb-11e3-4717-93aa-06a6f5aa44f0), transitioning to setup
+[2026/01/19 08:33:57 FINEST]                  [LoginTiming] setTimeout-send-world-settings took 1ms 52us 992ns
+[2026/01/19 08:33:57   FINE]                  [LoginTiming] Load Player Config took 662us 542ns
+[2026/01/19 08:33:57 FINEST]                  [LoginTiming] setTimeout-receive-assets-request took 82ms 586us 175ns
+[2026/01/19 08:33:58   FINE]                  [LoginTiming] Request Assets took 577ms 515us 819ns
+[2026/01/19 08:33:58 FINEST]                  [LoginTiming] setTimeout-send-assets took 1ms 283us 91ns
+[2026/01/19 08:33:58   FINE]                  [LoginTiming] Send Common Assets took 478ms 305us 365ns
+[2026/01/19 08:33:59   WARN]                       [Hytale] Missing interaction Effect
+[2026/01/19 08:33:59   WARN]                       [Hytale] Missing interaction Music_Track_Empty
+[2026/01/19 08:33:59   FINE]                  [LoginTiming] Send Config Assets took 476ms 604us 237ns
+[2026/01/19 08:34:08   FINE]                  [LoginTiming] Player Options took 9sec 266ms 948us 174ns
+[2026/01/19 08:34:08   INFO]                   [Universe|P] Adding player 'M3raak1 (01c303eb-11e3-4717-93aa-06a6f5aa44f0)
+[2026/01/19 08:34:08 FINEST]                  [LoginTiming] setTimeout-add-to-universe took 6ms 875us 709ns
+[2026/01/19 08:34:08 FINEST]                  [LoginTiming] Load Player Config took 8ms 665us 838ns
+[2026/01/19 08:34:08 FINEST]                  [LoginTiming] Processed Referral took 1ms 145us 123ns
+
+
+// Null_v1 logando no jogo no servidor Null_v1?????
+
+
+
+
+
+
+
+// LOGS DE TENTATIVAS DE EXECUÇão com o M3raak1 tetando entra no servidor Null_v1 via script (sem sucesso):
+╭─miguelsiqueirareis@Miguels-MacBook-Pro ~/dev/java/Hytale-Server-Unpacked/npc ‹main●›
+╰─$  rm /Users/miguelsiqueirareis/dev/java/Hytale-Server-Unpacked/npc/src/main.rs                      130 ↵
+╭─miguelsiqueirareis@Miguels-MacBook-Pro ~/dev/java/Hytale-Server-Unpacked/npc ‹main●›
+╰─$  cargo build --release 2>&1 | tail -5
+156 |     pub sessionToken: String,
+    |         ^^^^^^^^^^^^ help: convert the identifier to snake case: `session_token`
+
+warning: `hytale-bot` (bin "hytale-bot") generated 15 warnings (run `cargo fix --bin "hytale-bot"` to apply 5 suggestions)
+    Finished `release` profile [optimized] target(s) in 3.44s
+╭─miguelsiqueirareis@Miguels-MacBook-Pro ~/dev/java/Hytale-Server-Unpacked/npc ‹main●›
+╰─$  ./target/release/hytale-bot 2>&1 | head -30
+Iniciando autenticacao...
+
+🌐 Abrindo navegador para login...
+Link (caso nao abra): https://oauth.accounts.hytale.com/oauth2/auth?client_id=hytale-launcher&response_type=code&scope=openid+offline+auth%3Alauncher&redirect_uri=https%3A%2F%2Faccounts.hytale.com%2Fconsent%2Fclient&code_challenge_method=S256&code_challenge=Nae0zBLAZtx0Tk5lsJU-P--1Pa7bqbXES4qTgWDCgvQ&state=eyJzdGF0ZSI6IlpJa1FsdVJaNlBHa2ZzQzAiLCJwb3J0IjoiNDM4MDMifQ
+Client SessionToken JWT COMPLETO:
+{"exp":1768811229,"iat":1768807629,"iss":"https://sessions.hytale.com","jti":"4427b821-739a-424c-88a3-cadec2bbab10","scope":"hytale:client","sub":"01c303eb-11e3-4717-93aa-06a6f5aa44f0"}
+🔐 Certificado gerado, fingerprint: dcdsocPifHT_uCfy6BJYkY6aEhpg4RT7hGg_rwyprgE
+Certificado gerado, fingerprint: dcdsocPifHT_uCfy6BJYkY6aEhpg4RT7hGg_rwyprgE
+Conectando ao servidor de jogo...
+📜 ServerIdentityToken recebido!
+   Token (primeiros 80 chars): eyJhbGciOiJFZERTQSIsImtpZCI6IjIwMjUtMTAtMDEiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3Njg4M...
+📄 JWT payload COMPLETO:
+{"exp":1768810395,"iat":1768806795,"iss":"https://sessions.hytale.com","jti":"d21f6859-f114-40c6-b368-fe03768f7bbe","profile":{"username":"Null_v1","entitlements":["game.base"],"skin":"{\"bodyCharacteristic\":\"Muscular.15\",\"underwear\":\"Suit.Black\",\"face\":\"Face_MakeUp\",\"ears\":\"Elf_Ears_Small\",\"mouth\":\"Mouth_Default\",\"haircut\":\"WavyBraids.White\",\"facialHair\":null,\"eyebrows\":\"Angry.White\",\"eyes\":\"Medium_Eyes.Green\",\"pants\":null,\"overpants\":null,\"undertop\":\"TieShirt.Black\",\"overtop\":null,\"shoes\":\"MinerBoots.Black\",\"headAccessory\":\"Goggles.Blue\",\"faceAccessory\":null,\"earAccessory\":\"SilverHoopsBead.Black\\u002BGrey\",\"skinFeature\":null,\"gloves\":null,\"cape\":null}"},"scope":"hytale:server","sub":"350beb9a-818a-4504-9386-39b37d809fa7"}
+---
+🔑 Encontrado 'sub' (subject): 350beb9a-818a-4504-9386-39b37d809fa7
+🎯 Server Session ID (do serverIdentityToken 'aud'): 350beb9a-818a-4504-9386-39b37d809fa7
+✅ AccessToken obtido da API!
+📄 AccessToken JWT payload: {"aud":"ee16f08e-95b9-465f-bc3e-06f5abab5b6f","cnf":{"x5t#S256":"dcdsocPifHT_uCfy6BJYkY6aEhpg4RT7hGg_rwyprgE"},"exp":1768807749,"iat":1768807629,"ip":"143.255.109.70","iss":"https://sessions.hytale.com","sub":"01c303eb-11e3-4717-93aa-06a6f5aa44f0","username":"M3raak1"}
+🎯 Encontrado 'aud' no accessToken: ee16f08e-95b9-465f-bc3e-06f5abab5b6f
+🔐 Gerando grant para o servidor (Server Session ID: 350beb9a-818a-4504-9386-39b37d809fa7)
+🔄 Gerando grant para servidor...
+   URL: https://sessions.hytale.com/server-join/auth-grant
+   Audience (UUID do servidor): 350beb9a-818a-4504-9386-39b37d809fa7
+   IdentityToken (primeiros 50 chars): eyJhbGciOiJFZERTQSIsImtpZCI6IjIwMjUtMTAtMDEiLCJ0eX...
+   SessionToken (primeiros 20 chars): eyJhbGciOiJFZERTQSIs...
+📤 Request body: {"aud":"350beb9a-818a-4504-9386-39b37d809fa7","identityToken":"eyJhbGciOiJFZERTQSIsImtpZCI6IjIwMjUtMTAtMDEiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3Njg4MTEyMjksImlhdCI6MTc2ODgwNzYyOSwiaXNzIjoiaHR0cHM6Ly9zZXNzaW9ucy5oeXRhbGUuY29tIiwianRpIjoiNDQyN2I4MjEtNzM5YS00MjRjLTg4YTMtY2FkZWMyYmJhYjEwIiwicHJvZmlsZSI6eyJ1c2VybmFtZSI6Ik0zcmFhazEiLCJlbnRpdGxlbWVudHMiOlsiZ2FtZS5iYXNlIl0sInNraW4iOiJ7XCJib2R5Q2hhcmFjdGVyaXN0aWNcIjpcIk11c2N1bGFyLjAyXCIsXCJ1bmRlcndlYXJcIjpcIlN1aXQuQmx1ZVwiLFwiZmFjZVwiOlwiRmFjZV9OZXV0cmFsXCIsXCJlYXJzXCI6XCJFbGZfRWFyc1wiLFwibW91dGhcIjpcIk1vdXRoX1RoaW5cIixcImhhaXJjdXRcIjpcIldpdGNoLlJlZFwiLFwiZmFjaWFsSGFpclwiOm51bGwsXCJleWVicm93c1wiOlwiTWVkaXVtLlJlZFwiLFwiZXllc1wiOlwiTGFyZ2VfRXllcy5CbGFja1wiLFwicGFudHNcIjpcIlNob3J0eVJvbGxlZC5CbGFja1wiLFwib3ZlcnBhbnRzXCI6XCJMb25nU29ja3NfQmFzaWNXcmFwLkJsYWNrXCIsXCJ1bmRlcnRvcFwiOlwiVGllU2hpcnQuQmxhY2tcIixcIm92ZXJ0b3BcIjpudWxsLFwic2hvZXNcIjpcIkxlYXRoZXJCb290cy5CbGFja1wiLFwiaGVhZEFjY2Vzc29yeVwiOm51bGwsXCJmYWNlQWNjZXNzb3J5XCI6bnVsbCxcImVhckFjY2Vzc29yeVwiOm51bGwsXCJza2luRmVhdHVyZVwiOm51bGwsXCJnbG92ZXNcIjpudWxsLFwiY2FwZVwiOm51bGx9In0sInNjb3BlIjoiaHl0YWxlOmNsaWVudCIsInN1YiI6IjAxYzMwM2ViLTExZTMtNDcxNy05M2FhLTA2YTZmNWFhNDRmMCJ9.gdCL6nSvoUNGe9kHZntXFnWbmJBJGjrHT_II6A1e057KIWGRV3Y7DnFytAahFx2yAsXyhgXi1Igp68CcijVdCA"}
+📥 Response status: 200 OK
+📥 Response body: {"authorizationGrant":"5#8tErFY3bAkarP1LZ1EPaDjR7RvIUdEw*njWky0VU%akv7T%URt1eci5*D@e.4j#O*xUV*kQyx6Q3InW!pLjGdtnpu**DFI"}
+
+✅ Grant para servidor obtido!
+╭─miguelsiqueirareis@Miguels-MacBook-Pro ~/dev/java/Hytale-Server-Unpacked/npc ‹main●›
+╰─$  cargo build --release 2>&1 | tail -5
+156 |     pub sessionToken: String,
+    |         ^^^^^^^^^^^^ help: convert the identifier to snake case: `session_token`
+
+warning: `hytale-bot` (bin "hytale-bot") generated 16 warnings (run `cargo fix --bin "hytale-bot"` to apply 5 suggestions)
+    Finished `release` profile [optimized] target(s) in 4.37s
+╭─miguelsiqueirareis@Miguels-MacBook-Pro ~/dev/java/Hytale-Server-Unpacked/npc ‹main●›
+╰─$  ./target/release/hytale-bot 2>&1 | head -50
+Iniciando autenticacao...
+
+🌐 Abrindo navegador para login...
+Link (caso nao abra): https://oauth.accounts.hytale.com/oauth2/auth?client_id=hytale-launcher&response_type=code&scope=openid+offline+auth%3Alauncher&redirect_uri=https%3A%2F%2Faccounts.hytale.com%2Fconsent%2Fclient&code_challenge_method=S256&code_challenge=tB0U9aSJkZHmpiHQQo3WhTU4m3j8uqsSIx_HTWjZJmM&state=eyJzdGF0ZSI6IjFyYVlsSGhBOHJKWkU5YTkiLCJwb3J0IjoiNDM4MDMifQ
+Client SessionToken JWT COMPLETO:
+{"exp":1768811339,"iat":1768807739,"iss":"https://sessions.hytale.com","jti":"5527533a-f6e3-44c5-a18a-dda8543364be","scope":"hytale:client","sub":"01c303eb-11e3-4717-93aa-06a6f5aa44f0"}
+🔐 Certificado gerado, fingerprint: 0owcyt_fYdo9vW1L7hxQ_9oeoyV32pioAnHoT6zADnU
+Certificado gerado, fingerprint: 0owcyt_fYdo9vW1L7hxQ_9oeoyV32pioAnHoT6zADnU
+Conectando ao servidor de jogo...
+📜 ServerIdentityToken recebido!
+   Token (primeiros 80 chars): eyJhbGciOiJFZERTQSIsImtpZCI6IjIwMjUtMTAtMDEiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3Njg4M...
+📄 JWT payload COMPLETO:
+{"exp":1768810395,"iat":1768806795,"iss":"https://sessions.hytale.com","jti":"d21f6859-f114-40c6-b368-fe03768f7bbe","profile":{"username":"Null_v1","entitlements":["game.base"],"skin":"{\"bodyCharacteristic\":\"Muscular.15\",\"underwear\":\"Suit.Black\",\"face\":\"Face_MakeUp\",\"ears\":\"Elf_Ears_Small\",\"mouth\":\"Mouth_Default\",\"haircut\":\"WavyBraids.White\",\"facialHair\":null,\"eyebrows\":\"Angry.White\",\"eyes\":\"Medium_Eyes.Green\",\"pants\":null,\"overpants\":null,\"undertop\":\"TieShirt.Black\",\"overtop\":null,\"shoes\":\"MinerBoots.Black\",\"headAccessory\":\"Goggles.Blue\",\"faceAccessory\":null,\"earAccessory\":\"SilverHoopsBead.Black\\u002BGrey\",\"skinFeature\":null,\"gloves\":null,\"cape\":null}"},"scope":"hytale:server","sub":"350beb9a-818a-4504-9386-39b37d809fa7"}
+---
+🔑 'sub': 350beb9a-818a-4504-9386-39b37d809fa7
+🆔 'jti': d21f6859-f114-40c6-b368-fe03768f7bbe
+🧪 TESTANDO: Usando 'jti' como Server Session ID: d21f6859-f114-40c6-b368-fe03768f7bbe
+✅ AccessToken obtido da API!
+📄 AccessToken JWT payload: {"aud":"ee16f08e-95b9-465f-bc3e-06f5abab5b6f","cnf":{"x5t#S256":"0owcyt_fYdo9vW1L7hxQ_9oeoyV32pioAnHoT6zADnU"},"exp":1768807859,"iat":1768807739,"ip":"143.255.109.70","iss":"https://sessions.hytale.com","sub":"01c303eb-11e3-4717-93aa-06a6f5aa44f0","username":"M3raak1"}
+🎯 Encontrado 'aud' no accessToken: ee16f08e-95b9-465f-bc3e-06f5abab5b6f
+🔐 Gerando grant para o servidor (Server Session ID: d21f6859-f114-40c6-b368-fe03768f7bbe)
+🔄 Gerando grant para servidor...
+   URL: https://sessions.hytale.com/server-join/auth-grant
+   Audience (UUID do servidor): d21f6859-f114-40c6-b368-fe03768f7bbe
+   IdentityToken (primeiros 50 chars): eyJhbGciOiJFZERTQSIsImtpZCI6IjIwMjUtMTAtMDEiLCJ0eX...
+   SessionToken (primeiros 20 chars): eyJhbGciOiJFZERTQSIs...
+📤 Request body: {"aud":"d21f6859-f114-40c6-b368-fe03768f7bbe","identityToken":"eyJhbGciOiJFZERTQSIsImtpZCI6IjIwMjUtMTAtMDEiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3Njg4MTEzMzksImlhdCI6MTc2ODgwNzczOSwiaXNzIjoiaHR0cHM6Ly9zZXNzaW9ucy5oeXRhbGUuY29tIiwianRpIjoiNTUyNzUzM2EtZjZlMy00NGM1LWExOGEtZGRhODU0MzM2NGJlIiwicHJvZmlsZSI6eyJ1c2VybmFtZSI6Ik0zcmFhazEiLCJlbnRpdGxlbWVudHMiOlsiZ2FtZS5iYXNlIl0sInNraW4iOiJ7XCJib2R5Q2hhcmFjdGVyaXN0aWNcIjpcIk11c2N1bGFyLjAyXCIsXCJ1bmRlcndlYXJcIjpcIlN1aXQuQmx1ZVwiLFwiZmFjZVwiOlwiRmFjZV9OZXV0cmFsXCIsXCJlYXJzXCI6XCJFbGZfRWFyc1wiLFwibW91dGhcIjpcIk1vdXRoX1RoaW5cIixcImhhaXJjdXRcIjpcIldpdGNoLlJlZFwiLFwiZmFjaWFsSGFpclwiOm51bGwsXCJleWVicm93c1wiOlwiTWVkaXVtLlJlZFwiLFwiZXllc1wiOlwiTGFyZ2VfRXllcy5CbGFja1wiLFwicGFudHNcIjpcIlNob3J0eVJvbGxlZC5CbGFja1wiLFwib3ZlcnBhbnRzXCI6XCJMb25nU29ja3NfQmFzaWNXcmFwLkJsYWNrXCIsXCJ1bmRlcnRvcFwiOlwiVGllU2hpcnQuQmxhY2tcIixcIm92ZXJ0b3BcIjpudWxsLFwic2hvZXNcIjpcIkxlYXRoZXJCb290cy5CbGFja1wiLFwiaGVhZEFjY2Vzc29yeVwiOm51bGwsXCJmYWNlQWNjZXNzb3J5XCI6bnVsbCxcImVhckFjY2Vzc29yeVwiOm51bGwsXCJza2luRmVhdHVyZVwiOm51bGwsXCJnbG92ZXNcIjpudWxsLFwiY2FwZVwiOm51bGx9In0sInNjb3BlIjoiaHl0YWxlOmNsaWVudCIsInN1YiI6IjAxYzMwM2ViLTExZTMtNDcxNy05M2FhLTA2YTZmNWFhNDRmMCJ9.Muxx76DmioX3RcKv8kFLUA6E6mP95Il37r1GK2CqmHuISFQ49gGysC3cC4BBx6330IG2eb2XTSESRmHWVkrHDA"}
+📥 Response status: 200 OK
+📥 Response body: {"authorizationGrant":"mQ.7umCk-H5#5vgu1O9NN7ch93aRx-Y2nopjvq2LK5xKLCgX2$KRJV_t3sOz6%TN84W4Wck6o0qIpj.nDr5OY9nJTAH3EgLd"}
+
+✅ Grant para servidor obtido!
+   Grant (primeiros 100 chars): mQ.7umCk-H5#5vgu1O9NN7ch93aRx-Y2nopjvq2LK5xKLCgX2$KRJV_t3sOz6%TN84W4Wck6o0qIpj.nDr5OY9nJTAH3EgLd...
+✅ Grant para servidor gerado com sucesso!
+   Grant (primeiros 50 chars): mQ.7umCk-H5#5vgu1O9NN7ch93aRx-Y2nopjvq2LK5xKLCgX2$...
+⛔ Servidor desconectou!
+Erro durante autenticacao: Desconectado pelo servidor
+╭─miguelsiqueirareis@Miguels-MacBook-Pro ~/dev/java/Hytale-Server-Unpacked/npc ‹main●›
+╰─$  cargo build --release 2>&1 | tail -5
+156 |     pub sessionToken: String,
+    |         ^^^^^^^^^^^^ help: convert the identifier to snake case: `session_token`
+
+warning: `hytale-bot` (bin "hytale-bot") generated 16 warnings (run `cargo fix --bin "hytale-bot"` to apply 5 suggestions)
+    Finished `release` profile [optimized] target(s) in 3.22s
+╭─miguelsiqueirareis@Miguels-MacBook-Pro ~/dev/java/Hytale-Server-Unpacked/npc ‹main●›
+╰─$  ./target/release/hytale-bot 2>&1 | head -60
+Iniciando autenticacao...
+
+🌐 Abrindo navegador para login...
+Link (caso nao abra): https://oauth.accounts.hytale.com/oauth2/auth?client_id=hytale-launcher&response_type=code&scope=openid+offline+auth%3Alauncher&redirect_uri=https%3A%2F%2Faccounts.hytale.com%2Fconsent%2Fclient&code_challenge_method=S256&code_challenge=MLZVJTtjL3x8HqadnoplkO4UlS8Pe2e0WSD4GGd4mYI&state=eyJzdGF0ZSI6IjhhRFZackFoNjJIRFZTQkMiLCJwb3J0IjoiNDM4MDMifQ
+Client SessionToken JWT COMPLETO:
+{"exp":1768811452,"iat":1768807852,"iss":"https://sessions.hytale.com","jti":"c25a55fc-4fcb-4d82-852e-1a2f5159c446","scope":"hytale:client","sub":"01c303eb-11e3-4717-93aa-06a6f5aa44f0"}
+🔐 Certificado gerado, fingerprint: PI0nLky5M_e_8QwlI8HVfX8XihTXax6kBAaX6UmFCfY
+Certificado gerado, fingerprint: PI0nLky5M_e_8QwlI8HVfX8XihTXax6kBAaX6UmFCfY
+Conectando ao servidor de jogo...
+📜 ServerIdentityToken recebido!
+   Token (primeiros 80 chars): eyJhbGciOiJFZERTQSIsImtpZCI6IjIwMjUtMTAtMDEiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3Njg4M...
+📄 JWT payload COMPLETO:
+{"exp":1768810395,"iat":1768806795,"iss":"https://sessions.hytale.com","jti":"d21f6859-f114-40c6-b368-fe03768f7bbe","profile":{"username":"Null_v1","entitlements":["game.base"],"skin":"{\"bodyCharacteristic\":\"Muscular.15\",\"underwear\":\"Suit.Black\",\"face\":\"Face_MakeUp\",\"ears\":\"Elf_Ears_Small\",\"mouth\":\"Mouth_Default\",\"haircut\":\"WavyBraids.White\",\"facialHair\":null,\"eyebrows\":\"Angry.White\",\"eyes\":\"Medium_Eyes.Green\",\"pants\":null,\"overpants\":null,\"undertop\":\"TieShirt.Black\",\"overtop\":null,\"shoes\":\"MinerBoots.Black\",\"headAccessory\":\"Goggles.Blue\",\"faceAccessory\":null,\"earAccessory\":\"SilverHoopsBead.Black\\u002BGrey\",\"skinFeature\":null,\"gloves\":null,\"cape\":null}"},"scope":"hytale:server","sub":"350beb9a-818a-4504-9386-39b37d809fa7"}
+---
+🔑 'sub': 350beb9a-818a-4504-9386-39b37d809fa7
+🆔 'jti': d21f6859-f114-40c6-b368-fe03768f7bbe
+✅ AccessToken obtido da API!
+📄 AccessToken JWT payload: {"aud":"ee16f08e-95b9-465f-bc3e-06f5abab5b6f","cnf":{"x5t#S256":"PI0nLky5M_e_8QwlI8HVfX8XihTXax6kBAaX6UmFCfY"},"exp":1768807973,"iat":1768807853,"ip":"143.255.109.70","iss":"https://sessions.hytale.com","sub":"01c303eb-11e3-4717-93aa-06a6f5aa44f0","username":"M3raak1"}
+🎯 Encontrado 'aud' no accessToken: ee16f08e-95b9-465f-bc3e-06f5abab5b6f
+🧪 TENTATIVA V2: Passando serverIdentityToken diretamente...
+🔄 [V2] Gerando grant para servidor...
+   URL: https://sessions.hytale.com/server-join/auth-grant
+   ClientIdentityToken (primeiros 50): eyJhbGciOiJFZERTQSIsImtpZCI6IjIwMjUtMTAtMDEiLCJ0eX...
+   ServerIdentityToken (primeiros 50): eyJhbGciOiJFZERTQSIsImtpZCI6IjIwMjUtMTAtMDEiLCJ0eX...
+📤 Request body keys: identityToken, serverIdentityToken
+📥 Response status: 200 OK
+📥 Response body: {"authorizationGrant":"pUwcJ@uR%rCJAAdQLm$8Gp6r*GBz5cQoe%GMPX9xoHPp$UN!c$MqDYZr@n4FqSTagwfL!yQ!IxA4.9kO5Y7S*b1*rl.4VIKq"}
+
+✅ Grant para servidor obtido!
+✅ V2: Grant para servidor gerado com sucesso!
+⛔ Servidor desconectou!
+Erro durante autenticacao: Desconectado pelo servidor
+╭─miguelsiqueirareis@Miguels-MacBook-Pro ~/dev/java/Hytale-Server-Unpacked/npc ‹main●›
+╰─$  cargo build --release 2>&1 | tail -5
+156 |     pub sessionToken: String,
+    |         ^^^^^^^^^^^^ help: convert the identifier to snake case: `session_token`
+
+warning: `hytale-bot` (bin "hytale-bot") generated 18 warnings (run `cargo fix --bin "hytale-bot"` to apply 6 suggestions)
+    Finished `release` profile [optimized] target(s) in 3.85s
+╭─miguelsiqueirareis@Miguels-MacBook-Pro ~/dev/java/Hytale-Server-Unpacked/npc ‹main●›
+╰─$  ./target/release/hytale-bot 2>&1 | head -60
+Iniciando autenticacao...
+
+🌐 Abrindo navegador para login...
+Link (caso nao abra): https://oauth.accounts.hytale.com/oauth2/auth?client_id=hytale-launcher&response_type=code&scope=openid+offline+auth%3Alauncher&redirect_uri=https%3A%2F%2Faccounts.hytale.com%2Fconsent%2Fclient&code_challenge_method=S256&code_challenge=J7bZX4sIF18hogkR3aU7m_lc9MdQH50QNJDDBAilATg&state=eyJzdGF0ZSI6IlV0VkN3aWZzaVRoOGNsUHkiLCJwb3J0IjoiNDM4MDMifQ
+Client SessionToken JWT COMPLETO:
+{"exp":1768811516,"iat":1768807916,"iss":"https://sessions.hytale.com","jti":"45bbfbd7-513f-4c10-9fd1-c41b16b72d4e","scope":"hytale:client","sub":"01c303eb-11e3-4717-93aa-06a6f5aa44f0"}
+🔐 Certificado gerado, fingerprint: 2RF4K5pGCN4PNYOYm4-pxMj7Kt3my4EpzDYVgJcCEPM
+Certificado gerado, fingerprint: 2RF4K5pGCN4PNYOYm4-pxMj7Kt3my4EpzDYVgJcCEPM
+Conectando ao servidor de jogo...
+📜 ServerIdentityToken recebido!
+   Token (primeiros 80 chars): eyJhbGciOiJFZERTQSIsImtpZCI6IjIwMjUtMTAtMDEiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3Njg4M...
+📄 JWT payload COMPLETO:
+{"exp":1768810395,"iat":1768806795,"iss":"https://sessions.hytale.com","jti":"d21f6859-f114-40c6-b368-fe03768f7bbe","profile":{"username":"Null_v1","entitlements":["game.base"],"skin":"{\"bodyCharacteristic\":\"Muscular.15\",\"underwear\":\"Suit.Black\",\"face\":\"Face_MakeUp\",\"ears\":\"Elf_Ears_Small\",\"mouth\":\"Mouth_Default\",\"haircut\":\"WavyBraids.White\",\"facialHair\":null,\"eyebrows\":\"Angry.White\",\"eyes\":\"Medium_Eyes.Green\",\"pants\":null,\"overpants\":null,\"undertop\":\"TieShirt.Black\",\"overtop\":null,\"shoes\":\"MinerBoots.Black\",\"headAccessory\":\"Goggles.Blue\",\"faceAccessory\":null,\"earAccessory\":\"SilverHoopsBead.Black\\u002BGrey\",\"skinFeature\":null,\"gloves\":null,\"cape\":null}"},"scope":"hytale:server","sub":"350beb9a-818a-4504-9386-39b37d809fa7"}
+---
+🔑 'sub': 350beb9a-818a-4504-9386-39b37d809fa7
+🆔 'jti': d21f6859-f114-40c6-b368-fe03768f7bbe
+✅ AccessToken obtido da API!
+📄 AccessToken JWT payload: {"aud":"ee16f08e-95b9-465f-bc3e-06f5abab5b6f","cnf":{"x5t#S256":"2RF4K5pGCN4PNYOYm4-pxMj7Kt3my4EpzDYVgJcCEPM"},"exp":1768808036,"iat":1768807916,"ip":"143.255.109.70","iss":"https://sessions.hytale.com","sub":"01c303eb-11e3-4717-93aa-06a6f5aa44f0","username":"M3raak1"}
+🎯 Encontrado 'aud' no accessToken: ee16f08e-95b9-465f-bc3e-06f5abab5b6f
+🧪 TENTATIVA V3: Usando accessToken como Bearer...
+🔄 [V3] Gerando grant para servidor com accessToken como Bearer...
+   URL: https://sessions.hytale.com/server-join/auth-grant
+   accessToken (primeiros 50): eyJhbGciOiJFZERTQSIsImtpZCI6IjIwMjUtMTAtMDEiLCJ0eX...
+📥 Response status: 403 Forbidden
+📥 Response body: invalid token
+
+❌ V3 falhou: Erro V3: 403 Forbidden - invalid token
+
+🔄 Tentando V2 (sessionToken como Bearer)...
+🔄 [V2] Gerando grant para servidor...
+   URL: https://sessions.hytale.com/server-join/auth-grant
+   ClientIdentityToken (primeiros 50): eyJhbGciOiJFZERTQSIsImtpZCI6IjIwMjUtMTAtMDEiLCJ0eX...
+   ServerIdentityToken (primeiros 50): eyJhbGciOiJFZERTQSIsImtpZCI6IjIwMjUtMTAtMDEiLCJ0eX...
+📤 Request body keys: identityToken, serverIdentityToken
+📥 Response status: 200 OK
+📥 Response body: {"authorizationGrant":"QBt.x9gXXWLP8_8trnWm7QQyUd3$8I@h_czQT_qTma*PA1zEcn6drPlt2P9fnFaw4n5$ROg1yRmD@UOStY_Qc6@rgb*rq#%M"}
+
+✅ Grant para servidor obtido!
+⛔ Servidor desconectou!
+Erro durante autenticacao: Desconectado pelo servidor
+╭─miguelsiqueirareis@Miguels-MacBook-Pro ~/dev/java/Hytale-Server-Unpacked/npc ‹main●›
+╰─$  wc -l /Users/miguelsiqueirareis/dev/java/Hytale-Server-Unpacked/com/hypixel/hytale/server/core/io/handlers/login/HandshakeHandler.java
+       0 /Users/miguelsiqueirareis/dev/java/Hytale-Server-Unpacked/com/hypixel/hytale/server/core/io/handlers/login/HandshakeHandler.java
+╭─miguelsiqueirareis@Miguels-MacBook-Pro ~/dev/java/Hytale-Server-Unpacked/npc ‹main●›
+
+Iniciando autenticação...
+
+🌐 Abrindo navegador para login...
+Link (caso nao abra): https://oauth.accounts.hytale.com/oauth2/auth?client_id=hytale-launcher&response_type=code&scope=openid+offline+auth%3Alauncher&redirect_uri=https%3A%2F%2Faccounts.hytale.com%2Fconsent%2Fclient&code_challenge_method=S256&code_challenge=XO3GGAzeHSeRyLUiki-Hpqy-iIe1Fy85-Hwiva7nQBA&state=eyJzdGF0ZSI6IllMZXpUVEprVGMxZHBKTksiLCJwb3J0IjoiNDM4MDMifQ
+🔐 Certificado gerado, fingerprint: Tjuy_Rgp8NCn_-XXvS5Tp-D09ZeYmI3wI32RIHPNBgw
+Conectando ao servidor de jogo...
+✅ exchange_grant_for_access_token OK: {"accessToken":"eyJhbGciOiJFZERTQSIsImtpZCI6IjIwMjUtMTAtMDEiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiJkNDRiMmUyYS05NmE3LTQ3YzUtOWRlYS0xMzk0YjhiNTRhZGYiLCJjbmYiOnsieDV0I1MyNTYiOiJUanV5X1JncDhOQ25fLVhYdlM1VHAtRDA5WmVZbUkzd0kzMlJJSFBOQmd3In0sImV4cCI6MTc2ODgwOTM5NiwiaWF0IjoxNzY4ODA5Mjc2LCJpcCI6IjE0My4yNTUuMTA5LjcwIiwiaXNzIjoiaHR0cHM6Ly9zZXNzaW9ucy5oeXRhbGUuY29tIiwic3ViIjoiMDFjMzAzZWItMTFlMy00NzE3LTkzYWEtMDZhNmY1YWE0NGYwIiwidXNlcm5hbWUiOiJNM3JhYWsxIn0.RSGAgUIO-uoU84aWHChtyE4ZcfsHw5yFyMG_sJRzviiqzUl6yTv5iZmXfdBxEc5VOl2mMf7vwcerudOAKnQ6AQ"}
+
+🧩 serverIdentityToken claims -> aud: None, sub: Some("350beb9a-818a-4504-9386-39b37d809fa7"), jti: Some("a2275902-9ad6-42a5-a733-c0dcbfbdf7cc")
+❌ request_server_auth_grant (access) FAIL: 403 Forbidden - invalid token
+
+⚠️ Falha no grant com accessToken: Erro ao gerar grant para servidor (access): 403 Forbidden - invalid token
+
+✅ request_server_auth_grant (session) OK: {"authorizationGrant":"FSyxtSdNil18Vo3i!Tik7yBI.jbx6l55W.Zoec8kkI9yam8C0i%jgn9rHOuDVyofzluwV5zPNkvG30ZH@ar-WeLprnL2if%#"}
+
+✅ Grant para servidor (session) obtido!
+⛔ Servidor desconectou!
+Erro durante autenticação: Desconectado pelo servidor
+
+🌐 Abrindo navegador para login...
+Link (caso nao abra): https://oauth.accounts.hytale.com/oauth2/auth?client_id=hytale-launcher&response_type=code&scope=openid+offline+auth%3Alauncher&redirect_uri=https%3A%2F%2Faccounts.hytale.com%2Fconsent%2Fclient&code_challenge_method=S256&code_challenge=eX9o_6DStVWvDq3AYqbmyfFVu1NXVj-QIdMDV1yoEX8&state=eyJzdGF0ZSI6IlY0dzZEemtZbTNJeGlydlUiLCJwb3J0IjoiNDM4MDMifQ
+🔐 Certificado gerado, fingerprint: Hd9VSHPbgnwiDk8-JwWs9vE2sQFWyHy-wtSvLHOBaF4
+Conectando ao servidor de jogo...
+✅ exchange_grant_for_access_token OK: {"accessToken":"eyJhbGciOiJFZERTQSIsImtpZCI6IjIwMjUtMTAtMDEiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiJkNDRiMmUyYS05NmE3LTQ3YzUtOWRlYS0xMzk0YjhiNTRhZGYiLCJjbmYiOnsieDV0I1MyNTYiOiJIZDlWU0hQYmdud2lEazgtSndXczl2RTJzUUZXeUh5LXd0U3ZMSE9CYUY0In0sImV4cCI6MTc2ODgwOTI2NCwiaWF0IjoxNzY4ODA5MTQ0LCJpcCI6IjE0My4yNTUuMTA5LjcwIiwiaXNzIjoiaHR0cHM6Ly9zZXNzaW9ucy5oeXRhbGUuY29tIiwic3ViIjoiMDFjMzAzZWItMTFlMy00NzE3LTkzYWEtMDZhNmY1YWE0NGYwIiwidXNlcm5hbWUiOiJNM3JhYWsxIn0.DUDwVaqtaGbWDyxwBQCaqgaUC4AXkUDAyp8_jNolBxddnhCmE1aIBEFhttlYKKkZmOc0ok0tKaqS__3B4MZBBQ"}
+
+🧩 serverIdentityToken claims -> aud: None, sub: Some("350beb9a-818a-4504-9386-39b37d809fa7"), jti: Some("a2275902-9ad6-42a5-a733-c0dcbfbdf7cc")
+✅ request_server_auth_grant OK: {"authorizationGrant":"!%3d*YfF*K0ON%CBlFuh4k-tHGEPcqAlRXMMoQMeHp3f6UR#ZUemgY-qKPq0p_J4ExG!VSWyLOZ_Y0gwXklE#4-!.FvlHaOD"}
+
+✅ Grant para servidor obtido!
+⛔ Servidor desconectou!
+Erro durante autenticação: Desconectado pelo servidor
+
+🌐 Abrindo navegador para login...
+Link (caso nao abra): https://oauth.accounts.hytale.com/oauth2/auth?client_id=hytale-launcher&response_type=code&scope=openid+offline+auth%3Alauncher&redirect_uri=https%3A%2F%2Faccounts.hytale.com%2Fconsent%2Fclient&code_challenge_method=S256&code_challenge=x4B4RXc8879UQV4bdrEpQjOJ9H4ezS48hMHfkBGLriE&state=eyJzdGF0ZSI6IjFGZFdaaktrY2Uxdk04SFkiLCJwb3J0IjoiNDM4MDMifQ
+🔐 Certificado gerado, fingerprint: XdnxLQHrXEvzMbMSDV6iy69mWlRYiTtaV5OoZuAbMk8
+Conectando ao servidor de jogo...
+✅ exchange_grant_for_access_token OK: {"accessToken":"eyJhbGciOiJFZERTQSIsImtpZCI6IjIwMjUtMTAtMDEiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiJkNDRiMmUyYS05NmE3LTQ3YzUtOWRlYS0xMzk0YjhiNTRhZGYiLCJjbmYiOnsieDV0I1MyNTYiOiJYZG54TFFIclhFdnpNYk1TRFY2aXk2OW1XbFJZaVR0YVY1T29adUFiTWs4In0sImV4cCI6MTc2ODgwOTExNCwiaWF0IjoxNzY4ODA4OTk0LCJpcCI6IjE0My4yNTUuMTA5LjcwIiwiaXNzIjoiaHR0cHM6Ly9zZXNzaW9ucy5oeXRhbGUuY29tIiwic3ViIjoiMDFjMzAzZWItMTFlMy00NzE3LTkzYWEtMDZhNmY1YWE0NGYwIiwidXNlcm5hbWUiOiJNM3JhYWsxIn0.zenKJ4069p0xZibWSf99luDV5Mi9Bfb2lwbbSV2b6XQ15jfMzsOafcqQHVCVLADafMNiF0XjC6FwYsK9QtOKDg"}
+
+✅ request_server_auth_grant OK: {"authorizationGrant":"aHVyooeegI5BE-EOcnqg6*%d.YCZf8Ll4hXmZMstojKB5n#X!Mv%-PanjuzRzi74X@GUPLFQv%u0kbZrQEgWsV4E!*N4LDlz"}
+
+✅ Grant para servidor obtido!
+⛔ Servidor desconectou!
+Erro durante autenticação: Desconectado pelo servidor
+
+
+
+// LOGS DANDO CERTO Null_v1 entrando servidor de Null_v1
+🌐 Abrindo navegador para login...
+Link (caso nao abra): https://oauth.accounts.hytale.com/oauth2/auth?client_id=hytale-launcher&response_type=code&scope=openid+offline+auth%3Alauncher&redirect_uri=https%3A%2F%2Faccounts.hytale.com%2Fconsent%2Fclient&code_challenge_method=S256&code_challenge=vnN-fJCh0ZLdvmu7ixHtci6gQxp5W5PvwzBcZGTg2t8&state=eyJzdGF0ZSI6IkVienN4MzVnRjlleTgwdGkiLCJwb3J0IjoiNDM4MDMifQ
+Client SessionToken JWT COMPLETO:
+{"exp":1768814591,"iat":1768810991,"iss":"https://sessions.hytale.com","jti":"980bd7f7-995d-4d68-82a4-ee63e97206fb","scope":"hytale:client","sub":"350beb9a-818a-4504-9386-39b37d809fa7"}
+🔐 Certificado gerado, fingerprint: HbJXB4X_avH5LcBWnQ7Tg2m_OzI3y5hDPUqXbGfdIRk
+Certificado gerado, fingerprint: HbJXB4X_avH5LcBWnQ7Tg2m_OzI3y5hDPUqXbGfdIRk
+Conectando ao servidor de jogo...
+🔍 Analisando grant do servidor...
+   Grant: 5j5T6i!%Suaj_S_WKzkdRT3jahnN!e5ksLqP9jrb4O3p8O69Xl0ecm7VMhgB!%Gu#doqTDkQtL9DZK56-4f6EtlgRLJgVQ6S
+   Tamanho: 96 bytes
+   Não é um JWT (sem pontos separadores)
+   Parece um token opaco/random
+📜 ServerIdentityToken recebido!
+   Token (primeiros 80 chars): eyJhbGciOiJFZERTQSIsImtpZCI6IjIwMjUtMTAtMDEiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3Njg4M...
+📄 JWT payload COMPLETO:
+{"exp":1768812356,"iat":1768808756,"iss":"https://sessions.hytale.com","jti":"a2275902-9ad6-42a5-a733-c0dcbfbdf7cc","profile":{"username":"Null_v1","entitlements":["game.base"],"skin":"{\"bodyCharacteristic\":\"Muscular.15\",\"underwear\":\"Suit.Black\",\"face\":\"Face_MakeUp\",\"ears\":\"Elf_Ears_Small\",\"mouth\":\"Mouth_Default\",\"haircut\":\"WavyBraids.White\",\"facialHair\":null,\"eyebrows\":\"Angry.White\",\"eyes\":\"Medium_Eyes.Green\",\"pants\":null,\"overpants\":null,\"undertop\":\"TieShirt.Black\",\"overtop\":null,\"shoes\":\"MinerBoots.Black\",\"headAccessory\":\"Goggles.Blue\",\"faceAccessory\":null,\"earAccessory\":\"SilverHoopsBead.Black\\u002BGrey\",\"skinFeature\":null,\"gloves\":null,\"cape\":null}"},"scope":"hytale:server","sub":"350beb9a-818a-4504-9386-39b37d809fa7"}
+---
+🔑 'sub': 350beb9a-818a-4504-9386-39b37d809fa7
+🆔 'jti': a2275902-9ad6-42a5-a733-c0dcbfbdf7cc
+✅ AccessToken obtido da API!
+📄 AccessToken JWT payload: {"aud":"d44b2e2a-96a7-47c5-9dea-1394b8b54adf","cnf":{"x5t#S256":"HbJXB4X_avH5LcBWnQ7Tg2m_OzI3y5hDPUqXbGfdIRk"},"exp":1768811112,"iat":1768810992,"ip":"143.255.109.70","iss":"https://sessions.hytale.com","sub":"350beb9a-818a-4504-9386-39b37d809fa7","username":"Null_v1"}
+🎯 Encontrado 'aud' no accessToken: d44b2e2a-96a7-47c5-9dea-1394b8b54adf
+🔄 Solicitando grant para o servidor usando audience d44b2e2a-96a7-47c5-9dea-1394b8b54adf
+🔄 Gerando grant para servidor...
+   URL: https://sessions.hytale.com/server-join/auth-grant
+   Audience (UUID do servidor): d44b2e2a-96a7-47c5-9dea-1394b8b54adf
+   IdentityToken (primeiros 50 chars): eyJhbGciOiJFZERTQSIsImtpZCI6IjIwMjUtMTAtMDEiLCJ0eX...
+   SessionToken (primeiros 20 chars): eyJhbGciOiJFZERTQSIs...
+📤 Request body: {"aud":"d44b2e2a-96a7-47c5-9dea-1394b8b54adf","identityToken":"eyJhbGciOiJFZERTQSIsImtpZCI6IjIwMjUtMTAtMDEiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3Njg4MTQ1OTEsImlhdCI6MTc2ODgxMDk5MSwiaXNzIjoiaHR0cHM6Ly9zZXNzaW9ucy5oeXRhbGUuY29tIiwianRpIjoiOTgwYmQ3ZjctOTk1ZC00ZDY4LTgyYTQtZWU2M2U5NzIwNmZiIiwicHJvZmlsZSI6eyJ1c2VybmFtZSI6Ik51bGxfdjEiLCJlbnRpdGxlbWVudHMiOlsiZ2FtZS5iYXNlIl0sInNraW4iOiJ7XCJib2R5Q2hhcmFjdGVyaXN0aWNcIjpcIk11c2N1bGFyLjE1XCIsXCJ1bmRlcndlYXJcIjpcIlN1aXQuQmxhY2tcIixcImZhY2VcIjpcIkZhY2VfTWFrZVVwXCIsXCJlYXJzXCI6XCJFbGZfRWFyc19TbWFsbFwiLFwibW91dGhcIjpcIk1vdXRoX0RlZmF1bHRcIixcImhhaXJjdXRcIjpcIldhdnlCcmFpZHMuV2hpdGVcIixcImZhY2lhbEhhaXJcIjpudWxsLFwiZXllYnJvd3NcIjpcIkFuZ3J5LldoaXRlXCIsXCJleWVzXCI6XCJNZWRpdW1fRXllcy5HcmVlblwiLFwicGFudHNcIjpudWxsLFwib3ZlcnBhbnRzXCI6bnVsbCxcInVuZGVydG9wXCI6XCJUaWVTaGlydC5CbGFja1wiLFwib3ZlcnRvcFwiOm51bGwsXCJzaG9lc1wiOlwiTWluZXJCb290cy5CbGFja1wiLFwiaGVhZEFjY2Vzc29yeVwiOlwiR29nZ2xlcy5CbHVlXCIsXCJmYWNlQWNjZXNzb3J5XCI6bnVsbCxcImVhckFjY2Vzc29yeVwiOlwiU2lsdmVySG9vcHNCZWFkLkJsYWNrXFx1MDAyQkdyZXlcIixcInNraW5GZWF0dXJlXCI6bnVsbCxcImdsb3Zlc1wiOm51bGwsXCJjYXBlXCI6bnVsbH0ifSwic2NvcGUiOiJoeXRhbGU6Y2xpZW50Iiwic3ViIjoiMzUwYmViOWEtODE4YS00NTA0LTkzODYtMzliMzdkODA5ZmE3In0.KIy7TlqQeboBkqqA9WAZdlDgUZFrIPhSc7wAz4soC_p7NCAGq4jnSaUUa9sOWaSJKbBCuuYi5IKQy2QX12hNDA","serverIdentityToken":"eyJhbGciOiJFZERTQSIsImtpZCI6IjIwMjUtMTAtMDEiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3Njg4MTIzNTYsImlhdCI6MTc2ODgwODc1NiwiaXNzIjoiaHR0cHM6Ly9zZXNzaW9ucy5oeXRhbGUuY29tIiwianRpIjoiYTIyNzU5MDItOWFkNi00MmE1LWE3MzMtYzBkY2JmYmRmN2NjIiwicHJvZmlsZSI6eyJ1c2VybmFtZSI6Ik51bGxfdjEiLCJlbnRpdGxlbWVudHMiOlsiZ2FtZS5iYXNlIl0sInNraW4iOiJ7XCJib2R5Q2hhcmFjdGVyaXN0aWNcIjpcIk11c2N1bGFyLjE1XCIsXCJ1bmRlcndlYXJcIjpcIlN1aXQuQmxhY2tcIixcImZhY2VcIjpcIkZhY2VfTWFrZVVwXCIsXCJlYXJzXCI6XCJFbGZfRWFyc19TbWFsbFwiLFwibW91dGhcIjpcIk1vdXRoX0RlZmF1bHRcIixcImhhaXJjdXRcIjpcIldhdnlCcmFpZHMuV2hpdGVcIixcImZhY2lhbEhhaXJcIjpudWxsLFwiZXllYnJvd3NcIjpcIkFuZ3J5LldoaXRlXCIsXCJleWVzXCI6XCJNZWRpdW1fRXllcy5HcmVlblwiLFwicGFudHNcIjpudWxsLFwib3ZlcnBhbnRzXCI6bnVsbCxcInVuZGVydG9wXCI6XCJUaWVTaGlydC5CbGFja1wiLFwib3ZlcnRvcFwiOm51bGwsXCJzaG9lc1wiOlwiTWluZXJCb290cy5CbGFja1wiLFwiaGVhZEFjY2Vzc29yeVwiOlwiR29nZ2xlcy5CbHVlXCIsXCJmYWNlQWNjZXNzb3J5XCI6bnVsbCxcImVhckFjY2Vzc29yeVwiOlwiU2lsdmVySG9vcHNCZWFkLkJsYWNrXFx1MDAyQkdyZXlcIixcInNraW5GZWF0dXJlXCI6bnVsbCxcImdsb3Zlc1wiOm51bGwsXCJjYXBlXCI6bnVsbH0ifSwic2NvcGUiOiJoeXRhbGU6c2VydmVyIiwic3ViIjoiMzUwYmViOWEtODE4YS00NTA0LTkzODYtMzliMzdkODA5ZmE3In0.Z_IjyCZOPtwTZovH_6VmE_eBHbCSzJspJGAcUC2Oc5cJEiFzPNAxWo8MRQSrmF7trN98W0845sjxoD0ZiU5PDQ"}
+📥 Response status: 200 OK
+📥 Response body: {"authorizationGrant":"9w-05#s.v1DC7cFR5A_2nn-38.Wz@qyKG!vtkePd.Qj@K0nx5hEA#DhQfzVlfOw_F_0b8B0I7hksdaP@#P2DDlxWvS8etuSL"}
+
+✅ Grant para servidor obtido!
+   Grant (primeiros 100 chars): 9w-05#s.v1DC7cFR5A_2nn-38.Wz@qyKG!vtkePd.Qj@K0nx5hEA#DhQfzVlfOw_F_0b8B0I7hksdaP@#P2DDlxWvS8etuSL...
+🔐 Recebido ServerAuthToken - autenticação avançando!
+Autenticacao concluida com sucesso!
