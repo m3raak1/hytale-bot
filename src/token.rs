@@ -240,6 +240,7 @@ pub async fn request_server_auth_grant(
     });
 
     println!("🔄 Gerando grant para servidor (aud: {})...", server_audience);
+    println!("📤 Request body: {}", body);
 
     let response = client
         .post(url)
@@ -249,6 +250,8 @@ pub async fn request_server_auth_grant(
         .json(&body)
         .send()
         .await?;
+
+    println!("📥 Response status: {}", response.status());
 
     if response.status().is_success() {
         let resp_text = response.text().await?;

@@ -42,17 +42,28 @@ struct AccessTokenResponse {
 fn extract_jwt_subject(jwt: &str) -> Option<String> {
     let parts: Vec<&str> = jwt.split('.').collect();
     if parts.len() < 2 {
+        println!("⚠️ JWT inválido - menos de 2 partes");
         return None;
     }
 
     // Decodifica o payload (segunda parte)
     let payload_b64 = parts[1];
-    let payload_bytes = general_purpose::URL_SAFE_NO_PAD.decode(payload_b64).ok()?;
+
+    // Tentar com URL_SAFE_NO_PAD primeiro, depois com padding
+    let payload_bytes = general_purpose::URL_SAFE_NO_PAD.decode(payload_b64)
+        .or_else(|_| general_purpose::URL_SAFE.decode(payload_b64))
+        .or_else(|_| general_purpose::STANDARD_NO_PAD.decode(payload_b64))
+        .or_else(|_| general_purpose::STANDARD.decode(payload_b64))
+        .ok()?;
+
     let payload_str = String::from_utf8(payload_bytes).ok()?;
+    println!("📄 JWT payload: {}", &payload_str[..payload_str.len().min(200)]);
 
     // Parse JSON e extrai "sub"
     let json: serde_json::Value = serde_json::from_str(&payload_str).ok()?;
-    json.get("sub").and_then(|v| v.as_str()).map(|s| s.to_string())
+    let sub = json.get("sub").and_then(|v| v.as_str()).map(|s| s.to_string());
+    println!("🔑 Servidor UUID extraído: {:?}", sub);
+    sub
 }
 
 pub fn parse_auth_grant(data: &[u8]) -> Option<AuthGrantPacket> {
