@@ -3,10 +3,8 @@ use quinn::{SendStream, RecvStream};
 use serde::Deserialize;
 use super::common::*;
 use super::packets::*;
-use reqwest;
-
-
-use crate::token::exchange_grant_for_access_token;
+use crate::token::{exchange_grant_for_access_token, request_server_auth_grant};
+use base64::{engine::general_purpose, Engine as _};
 
 /// Estruturas para parsear respostas de pacotes
 #[derive(Debug)]
@@ -39,6 +37,23 @@ struct AccessTokenResponse {
 }
 
 // --- Funções de Parsing ---
+
+/// Extrai o "sub" (UUID) de um JWT sem validar a assinatura
+fn extract_jwt_subject(jwt: &str) -> Option<String> {
+    let parts: Vec<&str> = jwt.split('.').collect();
+    if parts.len() < 2 {
+        return None;
+    }
+
+    // Decodifica o payload (segunda parte)
+    let payload_b64 = parts[1];
+    let payload_bytes = general_purpose::URL_SAFE_NO_PAD.decode(payload_b64).ok()?;
+    let payload_str = String::from_utf8(payload_bytes).ok()?;
+
+    // Parse JSON e extrai "sub"
+    let json: serde_json::Value = serde_json::from_str(&payload_str).ok()?;
+    json.get("sub").and_then(|v| v.as_str()).map(|s| s.to_string())
+}
 
 pub fn parse_auth_grant(data: &[u8]) -> Option<AuthGrantPacket> {
     if data.is_empty() { return None; }
@@ -128,8 +143,8 @@ pub async fn handle_auth_flow_network(
     send: &mut SendStream,
     recv: &mut RecvStream,
     identity_token: &str,
-    session_token: &str,
-    x509_fingerprint: &str,
+    session_token: &str,  // sessionToken para autenticar na API
+    x509_fingerprint: &str,  // fingerprint do certificado TLS
 ) -> Result<(), Box<dyn Error + Send + Sync>> {
     loop {
         let (packet_id, payload) = read_packet(recv).await?;
@@ -152,17 +167,41 @@ pub async fn handle_auth_flow_network(
 
                 if let Some(auth_grant) = parse_auth_grant(&payload) {
                     println!("   Authorization Grant presente? {}", auth_grant.authorization_grant.is_some());
+                    println!("   Server Identity Token presente? {}", auth_grant.server_identity_token.is_some());
 
                     if let Some(grant) = &auth_grant.authorization_grant {
                         println!("🔄 Trocando Grant por AccessToken via API...");
 
-                        // Chamar a API para obter o accessToken real
-                        match exchange_grant_for_access_token(grant,  session_token, x509_fingerprint).await {
+                        // Chamar a API para obter o accessToken real (com fingerprint)
+                        match exchange_grant_for_access_token(grant, session_token, x509_fingerprint).await {
                             Ok(access_token) => {
-                                println!("✅ AccessToken obtido, enviando AuthToken...");
+                                println!("✅ AccessToken obtido!");
+
+                                // Agora gerar um grant PARA o servidor
+                                let server_grant = if let Some(server_identity) = &auth_grant.server_identity_token {
+                                    // Extrair o UUID do servidor do serverIdentityToken
+                                    if let Some(server_uuid) = extract_jwt_subject(server_identity) {
+                                        println!("🔄 Gerando grant para servidor (UUID: {})...", server_uuid);
+                                        match request_server_auth_grant(identity_token, &server_uuid, session_token).await {
+                                            Ok(grant) => Some(grant),
+                                            Err(e) => {
+                                                println!("⚠️ Falha ao gerar grant para servidor: {}", e);
+                                                None
+                                            }
+                                        }
+                                    } else {
+                                        println!("⚠️ Não foi possível extrair UUID do serverIdentityToken");
+                                        None
+                                    }
+                                } else {
+                                    println!("⚠️ Sem serverIdentityToken, não podemos gerar grant para servidor");
+                                    None
+                                };
+
+                                println!("📤 Enviando AuthToken...");
                                 let auth_token = build_auth_token(
                                     Some(&access_token),
-                                    Some(grant)
+                                    server_grant.as_deref()
                                 );
                                 send.write_all(&auth_token).await?;
                             }

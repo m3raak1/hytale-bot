@@ -53,8 +53,14 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
           println!("Pacote de conexão enviado ao servidor.");
 
-          // Passamos o sessionToken (gerado pela API de sessão) em vez do identityToken para a etapa de AuthToken
-          if let Err(e) = protocol::handler::handle_auth_flow_network(&mut send, &mut recv, &session_response.identityToken, &session_response.sessionToken, &x509_fingerprint).await {
+          // Passamos o sessionToken, identityToken e fingerprint
+          if let Err(e) = protocol::handler::handle_auth_flow_network(
+              &mut send,
+              &mut recv,
+              &session_response.identityToken,
+              &session_response.sessionToken,
+              &x509_fingerprint
+          ).await {
               println!("Erro durante autenticação: {}", e);
           } else {
               println!("Autenticação realizada com sucesso!");
@@ -68,4 +74,3 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
   Ok(())
 }
-

@@ -80,7 +80,9 @@ pub fn configure_client() -> (ClientConfig, String) {
     let mut hasher = Sha256::new();
     hasher.update(&cert_der.as_ref());
     let fingerprint = hasher.finalize();
-    let x509_fingerprint = general_purpose::STANDARD.encode(&fingerprint);
+    let x509_fingerprint = general_purpose::URL_SAFE_NO_PAD.encode(&fingerprint);
+
+    println!("🔐 Certificado gerado, fingerprint: {}", x509_fingerprint);
 
     let cert_chain = vec![cert_der];
     let key_der = rustls::pki_types::PrivateKeyDer::Pkcs8(priv_key.into());
