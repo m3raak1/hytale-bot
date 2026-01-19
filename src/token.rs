@@ -6,6 +6,7 @@ use sha2::{Digest, Sha256};
 use std::sync::{Arc, Mutex};
 use tokio::sync::oneshot;
 use warp::Filter;
+use uuid::Uuid;
 
 // Configurações Constantes do Hytale
 const CLIENT_ID: &str = "hytale-launcher";
@@ -149,7 +150,13 @@ fn generate_challenge(verifier: &str) -> String {
 
 // --- Função para criar sessão de jogo ---
 
-pub async fn create_game_session(access_token: &str, player_uuid: &str) -> Result<String, Box<dyn std::error::Error>> {
+#[derive(Deserialize, Debug)]
+pub struct GameSessionResponse {
+    pub identityToken: String,
+    pub sessionToken: String,
+}
+
+pub async fn create_game_session(access_token: &str, player_uuid: Uuid) -> Result<GameSessionResponse, Box<dyn std::error::Error>> {
     let client = Client::new();
     let url = "https://sessions.hytale.com/game-session/new";
 
@@ -157,7 +164,7 @@ pub async fn create_game_session(access_token: &str, player_uuid: &str) -> Resul
     headers.insert("Authorization", format!("Bearer {}", access_token).parse()?);
     headers.insert("Content-Type", "application/json".parse()?);
     let body = serde_json::json!({
-        "uuid": player_uuid
+        "uuid": player_uuid.to_string()
     });
     let response = client
         .post(url)
@@ -168,7 +175,8 @@ pub async fn create_game_session(access_token: &str, player_uuid: &str) -> Resul
 
     if response.status().is_success() {
         let resp_text = response.text().await?;
-        Ok(resp_text)
+        let game_session_response: GameSessionResponse = serde_json::from_str(&resp_text)?;
+        Ok(game_session_response)
     } else {
         let err_text = response.text().await?;
         Err(format!("Erro ao criar sessão de jogo: {}", err_text).into())

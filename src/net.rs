@@ -67,9 +67,21 @@ pub fn configure_client() -> ClientConfig {
     let _ = rustls::crypto::ring::default_provider().install_default();
 
     let root_store = RootCertStore::empty();
+
+    // Gerar certificado self-signed para mTLS (requerido pelo servidor Hytale)
+    let subject_alt_names = vec!["hytale_client".to_string()];
+    let certified_key = rcgen::generate_simple_self_signed(subject_alt_names).expect("Failed to generate client cert");
+
+    let cert_der = certified_key.cert.der().clone();
+    let priv_key = certified_key.signing_key.serialize_der();
+
+    let cert_chain = vec![cert_der];
+    let key_der = rustls::pki_types::PrivateKeyDer::Pkcs8(priv_key.into());
+
     let mut tls_config = rustls::ClientConfig::builder()
         .with_root_certificates(root_store)
-        .with_no_client_auth();
+        .with_client_auth_cert(cert_chain, key_der)
+        .expect("Failed to configure client auth");
 
     tls_config.dangerous().set_certificate_verifier(SkipServerVerification::new());
 

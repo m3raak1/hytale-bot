@@ -1,16 +1,12 @@
-use std::{error::Error, time::Duration};
-use quinn::{ClientConfig, Endpoint, TransportConfig};
-use tokio::sync::mpsc;
+use quinn::{Endpoint};
 use uuid::Uuid;
-use std::sync::Arc;
-use rustls::RootCertStore;
 
 mod token;
 mod net;
+mod protocol;
 
 const PORT: u16 = 5520;
 const SERVER_ADDRESS: &str = "72.60.149.222";
-const ALPN_PROTOCOLS: &str = "hytale/1";
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -21,7 +17,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
   print!("Package Data:");
   let username = "Null_v1";
-  let uuid = "350beb9a-818a-4504-9386-39b37d809fa7";
+  let uuid: Uuid = Uuid::parse_str("350beb9a-818a-4504-9386-39b37d809fa7")?;
 
   println!("Iniciando autenticação...");
 
@@ -51,6 +47,17 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
   match connection.open_bi().await {
       Ok((mut send, mut recv)) => {
           println!("Canal bidirecional aberto com sucesso.");
+
+          let packet = protocol::packets::build_connect_packet_with_token(username, uuid, &session_response.identityToken);
+          send.write_all(&packet).await?;
+
+          println!("Pacote de conexão enviado ao servidor.");
+
+          if let Err(e) = protocol::handler::handle_auth_flow_network(&mut send, &mut recv, &session_response.identityToken, &access_token).await {
+              println!("Erro durante autenticação: {}", e);
+          } else {
+              println!("Autenticação realizada com sucesso!");
+          }
 
       }
       Err(e) => {
