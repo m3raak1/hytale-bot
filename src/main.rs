@@ -7,6 +7,8 @@ mod protocol;
 
 const PORT: u16 = 5520;
 const SERVER_ADDRESS: &str = "72.60.149.222";
+const USERNAME: &str = "M3raak1";
+const UUID: &str = "01c303eb-11e3-4717-93aa-06a6f5aa44f0";
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -15,8 +17,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
   // Server data
   let server_address = format!("{}:{}", SERVER_ADDRESS, PORT);
 
-  let username = "Null_v1";
-  let uuid: Uuid = Uuid::parse_str("350beb9a-818a-4504-9386-39b37d809fa7")?;
+  let username = USERNAME;
+  let uuid: Uuid = Uuid::parse_str(UUID)?;
 
   println!("Iniciando autenticação...");
 
@@ -39,25 +41,25 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
   // Aqui você pode iniciar a comunicação com o servidor de jogo usando `connection`
   match connection.open_bi().await {
-      Ok((mut send, mut recv)) => {
+        Ok((mut send, mut recv)) => {
 
-          let packet = protocol::packets::build_connect_packet_with_token(username, uuid, &session_response.identityToken);
-          send.write_all(&packet).await?;
+        let packet = protocol::packets::build_connect_packet_with_token(username, uuid, &session_response.identityToken);
+        send.write_all(&packet).await?;
 
-          // Passamos o sessionToken, identityToken e fingerprint
-          if let Err(e) = protocol::handler::handle_auth_flow_network(
-              &mut send,
-              &mut recv,
-              &session_response.identityToken,
-              &session_response.sessionToken,
-              &x509_fingerprint
-          ).await {
-              println!("Erro durante autenticação: {}", e);
-          } else {
-              println!("Autenticação concluída com sucesso!");
+        // Passamos o sessionToken, identityToken e fingerprint
+        if let Err(e) = protocol::handler::handle_auth_flow_network(
+            &mut send,
+            &mut recv,
+            &session_response.identityToken,
+            &session_response.sessionToken,
+            &x509_fingerprint
+        ).await {
+            println!("Erro durante autenticação: {}", e);
+        } else {
+            println!("Autenticação concluída com sucesso!");
 
 
-          }
+        }
 
       }
       Err(e) => {
