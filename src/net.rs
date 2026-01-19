@@ -2,6 +2,8 @@ use std::sync::Arc;
 use std::time::Duration;
 use quinn::{ClientConfig, TransportConfig};
 use rustls::RootCertStore;
+use sha2::{Sha256, Digest};
+use base64::{engine::general_purpose, Engine as _};
 
 const MAX_UDP_PAYLOAD_SIZE: u16 = 1200;
 
@@ -63,7 +65,7 @@ impl rustls::client::danger::ServerCertVerifier for SkipServerVerification {
     }
 }
 
-pub fn configure_client() -> ClientConfig {
+pub fn configure_client() -> (ClientConfig, String) {
     let _ = rustls::crypto::ring::default_provider().install_default();
 
     let root_store = RootCertStore::empty();
@@ -74,6 +76,11 @@ pub fn configure_client() -> ClientConfig {
 
     let cert_der = certified_key.cert.der().clone();
     let priv_key = certified_key.signing_key.serialize_der();
+
+    let mut hasher = Sha256::new();
+    hasher.update(&cert_der.as_ref());
+    let fingerprint = hasher.finalize();
+    let x509_fingerprint = general_purpose::STANDARD.encode(&fingerprint);
 
     let cert_chain = vec![cert_der];
     let key_der = rustls::pki_types::PrivateKeyDer::Pkcs8(priv_key.into());
@@ -100,5 +107,5 @@ pub fn configure_client() -> ClientConfig {
     let mut client_config = ClientConfig::new(Arc::new(quic_crypto));
     client_config.transport_config(Arc::new(transport_config));
 
-    client_config
+    (client_config, x509_fingerprint)
 }

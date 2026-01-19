@@ -5,6 +5,9 @@ use super::common::*;
 use super::packets::*;
 use reqwest;
 
+
+use crate::token::exchange_grant_for_access_token;
+
 /// Estruturas para parsear respostas de pacotes
 #[derive(Debug)]
 pub struct AuthGrantPacket {
@@ -125,7 +128,8 @@ pub async fn handle_auth_flow_network(
     send: &mut SendStream,
     recv: &mut RecvStream,
     identity_token: &str,
-    access_token: &str
+    session_token: &str,
+    x509_fingerprint: &str,
 ) -> Result<(), Box<dyn Error + Send + Sync>> {
     loop {
         let (packet_id, payload) = read_packet(recv).await?;
@@ -149,19 +153,26 @@ pub async fn handle_auth_flow_network(
                 if let Some(auth_grant) = parse_auth_grant(&payload) {
                     println!("   Authorization Grant presente? {}", auth_grant.authorization_grant.is_some());
 
-                    // Lógica simplificada: Se receber grant, devolve grant (não vamos implementar mTLS complexo agora a menos que falhe)
-                    // O correto seria chamar a API da Hytale para trocar o Grant por um AccessToken real
-
                     if let Some(grant) = &auth_grant.authorization_grant {
-                         println!("⚠️ Trocando Grant por Token via API (Simulado - Enviando de volta como fallback)");
-                         // Por enquanto apenas devolvemos o token original + grant
-                         let auth_token = build_auth_token(
-                            Some(identity_token),
-                            Some(grant)
-                        );
-                        send.write_all(&auth_token).await?;
+                        println!("🔄 Trocando Grant por AccessToken via API...");
+
+                        // Chamar a API para obter o accessToken real
+                        match exchange_grant_for_access_token(grant,  session_token, x509_fingerprint).await {
+                            Ok(access_token) => {
+                                println!("✅ AccessToken obtido, enviando AuthToken...");
+                                let auth_token = build_auth_token(
+                                    Some(&access_token),
+                                    Some(grant)
+                                );
+                                send.write_all(&auth_token).await?;
+                            }
+                            Err(e) => {
+                                println!("❌ Falha ao obter accessToken: {}", e);
+                                return Err(e);
+                            }
+                        }
                     } else {
-                        // Fallback: Apenas reenvia identityToken
+                        println!("⚠️ AuthGrant sem grant, enviando identityToken...");
                         let auth_token = build_auth_token(Some(identity_token), None);
                         send.write_all(&auth_token).await?;
                     }

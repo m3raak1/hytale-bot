@@ -182,3 +182,44 @@ pub async fn create_game_session(access_token: &str, player_uuid: Uuid) -> Resul
         Err(format!("Erro ao criar sessão de jogo: {}", err_text).into())
     }
 }
+
+pub async fn exchange_grant_for_access_token(
+    authorization_grant: &str,
+    session_token: &str,
+    x509_fingerprint: &str,
+) -> Result<String, Box<dyn std::error::Error + Send + Sync>> {
+    let client = Client::new();
+    let url = "https://sessions.hytale.com/server-join/auth-token";
+
+    let body = serde_json::json!({
+        "authorizationGrant": authorization_grant,
+        "x509Fingerprint": x509_fingerprint.trim_end_matches("=")
+    });
+
+    let response = client
+        .post(url)
+        .header("Authorization", format!("Bearer {}", session_token))
+        .header("Content-Type", "application/json")
+        .header("User-Agent", "Hytale/1.0")
+        .json(&body)
+        .send()
+        .await?;
+
+    if response.status().is_success() {
+        let resp_text = response.text().await?;
+
+        // Parse JSON para extrair accessToken
+        let json: serde_json::Value = serde_json::from_str(&resp_text)?;
+
+        if let Some(access_token) = json.get("accessToken").and_then(|v| v.as_str()) {
+            println!("✅ AccessToken obtido da API!");
+            Ok(access_token.to_string())
+        } else {
+            Err(format!("Resposta sem accessToken: {}", resp_text).into())
+        }
+    } else {
+        let status = response.status();
+        let err_text = response.text().await?;
+        Err(format!("Erro ao trocar grant por token: {} - {}", status, err_text).into())
+    }
+}

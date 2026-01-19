@@ -32,7 +32,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
   println!("Sessão criada.");
 
   // 3. Conectar ao Servidor de Jogo
-  let config = net::configure_client();
+  let (config, x509_fingerprint) = net::configure_client();
 
   let mut game_client = Endpoint::client("[::]:0".parse()?)?;
   game_client.set_default_client_config(config);
@@ -53,7 +53,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
           println!("Pacote de conexão enviado ao servidor.");
 
-          if let Err(e) = protocol::handler::handle_auth_flow_network(&mut send, &mut recv, &session_response.identityToken, &access_token).await {
+          // Passamos o sessionToken (gerado pela API de sessão) em vez do identityToken para a etapa de AuthToken
+          if let Err(e) = protocol::handler::handle_auth_flow_network(&mut send, &mut recv, &session_response.identityToken, &session_response.sessionToken, &x509_fingerprint).await {
               println!("Erro durante autenticação: {}", e);
           } else {
               println!("Autenticação realizada com sucesso!");
