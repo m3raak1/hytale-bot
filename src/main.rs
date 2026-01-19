@@ -1,9 +1,10 @@
-use quinn::{Endpoint};
+use quinn::Endpoint;
 use uuid::Uuid;
 
-mod token;
+mod auth;
 mod net;
 mod protocol;
+mod utils;
 
 const PORT: u16 = 5520;
 const SERVER_ADDRESS: &str = "72.60.149.222";
@@ -12,60 +13,60 @@ const UUID: &str = "SUA_UUID_AQUI"; // Exemplo: "123e4567-e89b-12d3-a456-4266141
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-  tracing_subscriber::fmt::init();
+    tracing_subscriber::fmt::init();
 
-  // Server data
-  let server_address = format!("{}:{}", SERVER_ADDRESS, PORT);
+    let server_address = format!("{}:{}", SERVER_ADDRESS, PORT);
+    let username = USERNAME;
+    let uuid: Uuid = Uuid::parse_str(UUID)?;
 
-  let username = USERNAME;
-  let uuid: Uuid = Uuid::parse_str(UUID)?;
+    println!("Iniciando autenticação...");
 
-  println!("Iniciando autenticação...");
+    // 1. Obter Token de Acesso (Login Web)
+    let token_data = auth::get_access_token().await?;
+    let access_token = &token_data.access_token;
 
-  // 1. Obter Token de Acesso (Login Web)
-  let token_data = token::get_access_token().await?;
-  let access_token = &token_data.access_token;
+    // 2. Criar Sessão de Jogo
+    let session_response = auth::create_game_session(access_token, uuid).await?;
 
-  // 2. Criar Sessão de Jogo
-  let session_response = token::create_game_session(access_token, uuid).await?;
+    // 3. Conectar ao Servidor de Jogo
+    let (config, x509_fingerprint) = net::configure_client();
 
-  // 3. Conectar ao Servidor de Jogo
-  let (config, x509_fingerprint) = net::configure_client();
+    let mut game_client = Endpoint::client("[::]:0".parse()?)?;
+    game_client.set_default_client_config(config);
 
-  let mut game_client = Endpoint::client("[::]:0".parse()?)?;
-  game_client.set_default_client_config(config);
+    println!("Conectando ao servidor de jogo...");
+    let connection = game_client
+        .connect(server_address.parse()?, "hytale_server")?
+        .await
+        .map_err(|e| format!("Falha ao conectar ao servidor de jogo: {}", e))?;
 
-  println!("Conectando ao servidor de jogo...");
-  let connection = game_client.connect(server_address.parse()?, "hytale_server")?.await
-    .map_err(|e| format!("Falha ao conectar ao servidor de jogo: {}", e))?;
-
-  // Aqui você pode iniciar a comunicação com o servidor de jogo usando `connection`
-  match connection.open_bi().await {
+    match connection.open_bi().await {
         Ok((mut send, mut recv)) => {
+            let packet = protocol::build_connect_packet_with_token(
+                username,
+                uuid,
+                &session_response.identityToken,
+            );
+            send.write_all(&packet).await?;
 
-        let packet = protocol::packets::build_connect_packet_with_token(username, uuid, &session_response.identityToken);
-        send.write_all(&packet).await?;
-
-        // Passamos o sessionToken, identityToken e fingerprint
-        if let Err(e) = protocol::handler::handle_auth_flow_network(
-            &mut send,
-            &mut recv,
-            &session_response.identityToken,
-            &session_response.sessionToken,
-            &x509_fingerprint
-        ).await {
-            println!("Erro durante autenticação: {}", e);
-        } else {
-            println!("Autenticação concluída com sucesso!");
-
-
+            if let Err(e) = protocol::handle_auth_flow_network(
+                &mut send,
+                &mut recv,
+                &session_response.identityToken,
+                &session_response.sessionToken,
+                &x509_fingerprint,
+            )
+            .await
+            {
+                println!("Erro durante autenticação: {}", e);
+            } else {
+                println!("Autenticação concluída com sucesso!");
+            }
         }
+        Err(e) => {
+            println!("Falha ao abrir canal bidirecional: {}", e);
+        }
+    }
 
-      }
-      Err(e) => {
-          println!("Falha ao abrir canal bidirecional: {}", e);
-      }
-  }
-
-  Ok(())
+    Ok(())
 }

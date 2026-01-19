@@ -1,8 +1,8 @@
-use uuid::Uuid;
-use super::common::{PACKET_CONNECT, write_varint, varint_size, PACKET_AUTH_TOKEN, PACKET_PONG};
+//! Packet builders for Hytale protocol
 
-/// Protocol hash atual do Hytale (versão 2026.01.13)
-const PROTOCOL_HASH: &[u8; 64] = b"6708f121966c1c443f4b0eb525b2f81d0a8dc61f5003a692a8fa157e5e02cea9";
+use uuid::Uuid;
+use super::constants::{PACKET_CONNECT, PACKET_AUTH_TOKEN, PACKET_PONG, PROTOCOL_HASH};
+use super::codec::{write_varint, varint_size};
 
 /// Client types
 #[repr(u8)]
