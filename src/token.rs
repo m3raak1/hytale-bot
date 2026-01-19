@@ -168,7 +168,6 @@ pub async fn create_game_session(access_token: &str, player_uuid: &str) -> Resul
 
     if response.status().is_success() {
         let resp_text = response.text().await?;
-        println!("Sessão de jogo criada com sucesso: {}", resp_text);
         Ok(resp_text)
     } else {
         let err_text = response.text().await?;
